@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!--meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1"-->
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>CSC1006HS, UofT</title>
+
+<!-- Bootstrap -->
+<link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="./css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
+<link href="./css/main.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<link href='http://fonts.googleapis.com/css?family=Libre+Baskerville' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet"> 
+</head>
+<body>
+
+
+<div class="container theme-showcase" role="main">
+    <div class="page-header">
+        <h1>Imitation Learning for Robotics, Winter 2019, CSC2621HS </h1>
+    </div>
+
+    <!--div class="imgs">
+      <div id="pic1">
+	<a href="http://www.roboticsconference.org/"><img  src="./pic1.png"></img></a>
+      </div>
+
+      <div id="pic2">
+	<a href="https://mars.nasa.gov/mer/home/"><img src="./pic2.jpg"></img></a>
+      </div>	
+    </div-->
+    
+    <div class="row">
+      <div id="ov">
+	
+	<h3>Overview</h3>
+	
+	In the next few decades we are going to witness millions of people, from various backgrounds and levels of technical expertise, needing to
+	effectively interact with robotic technologies on a daily basis. As such, people will need to modify the behavior of their robots without
+	explicitly writing code, but by providing only a small number of kinesthetic or visual demonstrations. At the same time, robots should try to
+	infer and predict the human's intentions and internal objectives from past interactions, in order to provide assistance before it is explicitly asked.
+	This <b>graduate-level seminar course</b> will examine some of the most important papers in imitation learning for robot control, placing more emphasis on developments
+	in the last 10 years. Its purpose is to familiarize students with the frontiers of this research area, to help them identify open problems, and
+	to enable them to make a novel contribution.        
+
+	<h3>Prerequisites</h3>
+	You need to be comfortable with: introductory machine learning concepts (such as from CSC411/ECE521 or equivalent), linear algebra, basic multivariate
+	calculus, intro to probability. You also need to have strong programming skills in Python. <b>Note:</b> if you don't meet all the prerequisites above
+	please contact the instructor by email. Optional, but recommended: experience with neural networks, such as from CSC321, introductory-level familiarity
+	with reinforcement learning and control.
+
+	<h3>Announcements</h3>
+	<div><b>Dec 10, 2018</b>: The course is now available for registration on ROSI/ACORN.</div>
+	<div><b>Aug 22, 2018</b>: This is a new course, so it needs to go through the normal approval process by the Department of Computer Science and the Faculty of Arts and Science. This process will take place tentatively in October 2018. In the meantime, the temporary course code CSC1006HS will not appear on ROSI/ACORN. Students who wish to register for this course are encouraged to check the DCS 2018-2019 timetable for updates. Alternatively, they can request to sign up for notifications at <a href="https://groups.google.com/d/forum/uoft-imitation-learning">the course's google group</a>, where I will email everyone when registration becomes available on ROSI/ACORN.</div>    	
+      </div>
+
+      <h3>Teaching Staff</h3>
+      <div id="dts">
+        <div class="ts">
+          <div>Instructor</div>
+          <div><a href="http://www.cs.toronto.edu/~florian">Florian Shkurti</a></div>
+          <div>x@cs.toronto.edu, x=florian</div>
+	  <div>Office Hours: TBA</div>
+	</div>  
+      </div>
+
+      <div class="host">
+      </div>
+
+      <h3>Time and Location</h3>
+      <div id="dts">
+        <div class="ts">
+          <div>When: Fridays, 1-3pm</div>
+	  <div>Lecture room: AB 107, St. George Campus</div>
+	</div>  
+      </div>
+      
+      <div class="host">
+      </div>
+
+      	  
+      <div id="cd">
+
+        <h3>Grading and Important Dates</h3>
+	<ul>
+          <li><b>Presentations</b> (20%): Each student enrolled in the class will present at least one paper and they will be graded based on the clarity of the
+	    presentation, the depth of their understanding of the material, and how well they address questions from the audience. Students who present will give
+	    a practice presentation during office hours at the beginning of the week (time TBA), to ensure presentations of high quality.</li>
+
+	  
+	  <!--li><b>Paper Reviews</b> (10%): Every week, each student enrolled in the class will submit a paper review, by email, on Thursday by 6pm.
+	    The review will cover any one of the papers presented during lecture on Friday. Students are not required to submit a paper
+	    review during the week that they present. Paper reviews should not exceed 1 page and
+	    they should follow <a href="paper_review_structure.txt">this structure</a>.
+	  </li-->
+
+	  <li><b>Assignment</b> (20%): Topic TBA. Will be posted on Jan 18. Will be due Feb 1.</li>
+	  
+	  <li><b>Project Proposal</b> (10%): Due Feb 6. Students can take on projects individually, or in groups of up to three people.
+	    Tips for a good project proposal can be found <a href="">here</a>. Proposals should not be based only on papers covered in class by Feb 6th.
+	    Students are encouraged to look further ahead in the schedule and to start planning their project definition well ahead of this deadline.
+	    Students who need help choosing or crystallizing a project idea should email the instructor. Project proposals that involve the use of real
+	    robot hardware should clearly indicate so, to allow sufficient time for the instructor to arrange this.
+	  </li>
+	  
+	  <li><b>Progress Reports</b> (10%): Due Mar 4. Each group will submit a midterm progress report, no longer than 2 pages,
+	    in order to show progress that has been made in the project up to that date. Tips and expectations for a good midterm progress report are <a href="">here</a>.
+	  </li>
+
+	  <li><b>Project Presentation</b> (10%): Due Mar 29 or Apr 5. This will be a short presentation, approximately 10 minutes, depending on
+	    the number of groups.</li>
+	  
+	  <li><b>Project Report and Code</b> (30%): Due Apr 10. Tips and expectations for a good final project report can be found <a href="">here</a>.</li>
+	</ul>  
+	
+	
+      <h3>Course Description</h3>
+
+      This course will broadly cover the following areas:
+      <br/><br/>
+      <ul>
+        <li>Imitating the policies of demonstrators (people, expensive algorithms, optimal controllers)</li>
+	<li>Connections between imitation learning, optimal control, and reinforcement learning </li>
+	<li>Learning the cost functions that best explain a set of demonstrations</li>
+	<li>Shared autonomy between humans and robots for real-time control</li>
+      </ul>  
+      </div>
+      
+    </div>
+    <h3>Schedule</h3>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Lecture</th>
+                        <th>Date</th>
+                        <th>Topics</th>
+                        <th>Presenters</th>
+                        <th>Slides</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td id="day">Jan 11</td>
+                        <td>
+                          <b>Introduction</b><br/>
+                          Motivation, logistics, rough description of the topics to be covered.<br/><br/>
+             
+                          
+			  <b>Imitation vs. Robust Behavioral Cloning</b><br/>
+			  <a href="https://papers.nips.cc/paper/95-alvinn-an-autonomous-land-vehicle-in-a-neural-network">ALVINN: An autonomous land vehicle in a neural network</a><br/>
+			  <a href="https://ieeexplore.ieee.org/document/5509140/">Visual path following on a manifold in unstructured three-dimensional terrain</a><br/>
+			  <a href="https://arxiv.org/abs/1604.07316">End-to-end learning for self-driving cars</a><br/>
+			  <a href="https://ieeexplore.ieee.org/document/7358076/">A machine learning approach to visual perception of forest trails for mobile robots</a><br/>
+			  <a href="https://arxiv.org/abs/1011.0686">DAgger: A reduction of imitation learning and structured prediction to no-regret online learning</a><br/>
+			  <a href="https://arxiv.org/abs/1211.1690">Learning monocular reactive UAV control in cluttered natural environments</a><br/>
+			  
+			  <br/> 
+			  <b>Required Background Reading</b><br/>
+			  <a href="https://www.ri.cmu.edu/pub_files/2015/3/InvitationToImitation_3_1415.pdf">An invitation to imitation</a><br/>
+
+			  <br/> 
+			  <b>Optional Reading</b><br/>
+			  <a href="https://dl.acm.org/citation.cfm?id=1524008">A survey of robot learning from demonstration</a><br/>
+			  
+			</td>
+                        <td></td>
+                        <td><a href="Quiz_0.pdf">Quiz 0</a></td>
+                    </tr>
+
+
+		    <tr>
+                        <td>2</td>
+                        <td>Jan 18</td>
+                        <td>
+                          <b>Intro to Optimal Control and Model-Based Reinforcement Learning</b><br>
+			  Linear Quadratic Regulator<br/>
+			  <a href="https://homes.cs.washington.edu/~todorov/papers/LiICINCO04.pdf">Iterative Linear Quadratic Regulator</a><br/>
+			  <a href="https://www.sciencedirect.com/science/article/pii/S0005109814005160">Model Predictive Control</a><br/>
+                          <a href="https://people.eecs.berkeley.edu/~svlevine/papers/mfcgps.pdf">Learning neural network policies with guided policy search under unknown dynamics</a><br/>
+
+                          <br/> 
+			  <b>Required Background Reading</b><br/>
+			  <a href="http://www.argmin.net/2018/06/25/outsider-rl/">Ben Recht: An outsider's tour of RL</a> (watch his <a href="https://people.eecs.berkeley.edu/~brecht/l2c-icml2018/">ICML'18 tutorial</a>, too)<br/>
+			  
+                          <br/> 
+			  <b>Optional Reading</b><br/>
+			  <a href="http://mlg.eng.cam.ac.uk/pilco/">PILCO: Probabilistic inference for learning control</a><br/>
+                          <a href="https://arxiv.org/abs/1805.12114">Deep reinforcement learning in a handful of trials using probabilistic dynamics models</a><br/>
+			  <a href="https://arxiv.org/abs/1810.01566">Learning particle dynamics for manipulating rigid bodies, deformable objects, and fluids</a><br/>
+                          <a href="https://papers.nips.cc/paper/7948-end-to-end-differentiable-physics-for-learning-and-control">End-to-end differentiable physics for learning and control</a><br/>
+                          <a href="https://arxiv.org/abs/1807.02303">A survey on policy search algorithms for learning robot controllers in a handful of trials</a><br/>
+                          
+                        </td>
+                        <td></td>
+                        <td></td>
+                        
+                    </tr>
+ 
+                    <tr>
+                        <td>3</td>
+                        <td>Jan 25</td>
+                        <td>
+                            <b>Query-Efficient Policy Imitation via Novel State Detection</b><br>
+			    <a href="http://www.roboticsproceedings.org/rss09/p38.pdf">Maximum mean discrepancy imitation learning</a><br/>
+			    <a href="https://arxiv.org/abs/1709.06166">DropoutDAgger: A Bayesian approach to safe imitation learning</a><br/>
+			    <a href="https://ieeexplore.ieee.org/document/7487167/">SHIV: Reducing supervisor burden in DAgger using support vectors</a><br/>
+			    <a href="https://arxiv.org/abs/1605.06450">Query-efficient imitation learning for end-to-end autonomous driving</a><br/>
+			    
+			    <br/> 
+			    <b>Required Background Reading</b><br/>
+			    <a href="https://arxiv.org/abs/1506.02142">Dropout as a Bayesian approximation: representing model uncertainty in deep learning</a><br/>
+
+			    <br/> 
+			    <b>Optional Reading</b><br/>
+			    <a href="http://jmlr.org/papers/v15/srivastava14a.html">Dropout: A simple way to prevent neural networks from overfitting</a><br/>
+			    <a href="http://mlg.eng.cam.ac.uk/yarin/blog_3d801aa532c1ce.html">What my deep model doesn't know</a><br/>
+			    
+                        </td>
+                        <td></td>
+                        <td></td>
+                        
+                    </tr>
+	            
+                    <tr>
+                        <td>4</td>
+                        <td>Feb 1</td>
+                        <td>
+                          <b>Imitation Learning Combined with Reinforcement Learning, Control, and Planning #1</b><br>
+			  <a href="https://arxiv.org/abs/1802.05313">Reinforcement learning from imperfect demonstrations</a><br/>
+			  <a href="https://arxiv.org/abs/1709.07174">Agile off-road autonomous driving using end-to-end deep imitation learning</a><br/>
+			  <a href="https://arxiv.org/abs/1710.02410">End-to-end driving via conditional imitation learning</a><br/>
+			  <a href="https://arxiv.org/abs/1805.10413">Fast policy learning through imitation and reinforcement</a><br/>
+			  
+			  <br/> 
+			  <b>Required Background Reading</b><br/>
+			  <a href="https://arxiv.org/abs/1704.03732">Deep Q-learning from demonstrations</a><br/>
+			  
+			  <br/> 
+			  <b>Optional Reading: Imitation from Cost-to-Go Queries</b><br/>
+			  <a href="https://arxiv.org/abs/1406.5979">AggreVaTe: Reinforcement and imitation learning via interactive no-regret learning</a><br/>
+			  <a href="https://arxiv.org/abs/1703.01030">Deeply AggreVaTeD: Differentiable imitation learning for sequential prediction</a><br/>
+			  <a href="https://arxiv.org/abs/1801.07292">Convergence of value aggregation for imitation learning</a><br/>
+			  <a href="https://arxiv.org/abs/1805.11240">Truncated Horizon Policy Search: Combining reinforcement learning & imitation learning</a><br/>
+			  
+			  
+                        </td>
+                        <td></td>
+                        <td></td>
+                        
+                    </tr>
+	      
+                    <tr>
+                        <td>5</td>
+                        <td>Feb 8</td>
+                        <td>
+                          <b>Imitation Learning Combined with Reinforcement Learning, Control, and Planning #2</b><br>
+                          <a href="https://ieeexplore.ieee.org/document/6630832/">Model-based imitation learning by probabilistic trajectory matching</a><br/>
+			  <a href="https://arxiv.org/abs/1603.00622">PLATO: Policy learning using adaptive trajectory optimization</a><br/>
+			  <a href="https://www.ias.informatik.tu-darmstadt.de/publications/kober_RAM_2010.pdf">Imitation and reinforcement learning: practical learning algorithms for motor primitives in robotics</a><br/>
+			  <a href="https://link.springer.com/article/10.1007/s10514-017-9648-7">Using probabilistic movement primitives in robotics</a><br/>
+
+			  
+			  <br/> 
+			  <b>Optional Reading</b><br/>
+			  <a href="https://arxiv.org/abs/1709.10087">Learning complex dexterous manipulation with deep reinforcement learning and demonstrations</a><br/>
+			  <a href="https://arxiv.org/abs/1804.02717">DeepMimic: Example-guided deep reinforcement learning of physics-based character skills</a><br/>
+                          <a href="https://ropemanipulation.github.io/">Combining self-supervised learning and imitation for vision-based rope manipulation</a><br/>
+			  
+			  <br/> 
+			  <b>Optional Reading: Imitation Can Improve Exploration</b><br/>
+			  <a href="https://arxiv.org/abs/1709.10089">Overcoming exploration in reinforcement learning with demonstrations</a><br/>
+			  <a href="https://arxiv.org/abs/1611.04180">Learning to gather information via imitation</a><br/>
+			  <a href="https://dl.acm.org/citation.cfm?id=2936990">Exploration from demonstration for interactive reinforcement learning</a><br/><br/>
+			  
+			</td>
+                        <td></td>
+                        <td></td>
+                        
+                    </tr>
+
+		    <tr>
+                        <td>6</td>
+                        <td>Feb 15</td>
+                        <td>
+                          <b>Imitation as Program Induction and Modular Decomposition of Demonstrations</b><br>
+			  <a href="https://arxiv.org/abs/1710.01813">Neural Task Programming: Learning to generalize across hierarchical tasks</a><br/>
+			  <a href="https://www.ias.informatik.tu-darmstadt.de/uploads/Team/RudolfLioutikov/lioutikov_movement_pcfg_icra2018.pdf">Inducing probabilistic context-free grammars
+			    for the sequencing of movement primitives</a><br/>
+			  <a href="https://arxiv.org/abs/1803.01840">TACO: Learning task decomposition via temporal alignment for control</a><br/>
+			  <a href="http://journals.sagepub.com/doi/abs/10.1177/0278364911428653">Robot learning from demonstration by constructing skill trees</a><br/>
+			  
+			  <br/> 
+			  <b>Required Background Reading</b><br/>
+			  <a href="https://arxiv.org/abs/1511.06279">Neural programmer-interpreters</a><br/>
+			  <a href="https://ieeexplore.ieee.org/document/6457507/">The motion grammar: analysis of a linguistic method for robot control</a><br/>
+			  
+			  <br/> 
+			  <b>Optional Reading</b><br/>
+			  <a href="http://journals.sagepub.com/doi/abs/10.1177/0278364917713116">Learning movement primitive libraries through probabilistic segmentation </a><br/>
+			  <a href="https://ieeexplore.ieee.org/document/6943187/">Learning to sequence movement primitives from demonstrations</a><br/>
+			  <a href="https://www.sciencedirect.com/science/article/pii/S0010027709001607?via%3Dihub">Action understanding as inverse planning</a><br/>
+			  <a href="https://ieeexplore.ieee.org/document/5650500/">Incremental learning of subtasks from unsegmented demonstration</a><br/>
+			  
+                        </td>
+                        <td></td>
+                        <td></td>
+                        
+                    </tr>
+	            
+	            
+	            <tr>
+                        <td>7</td>
+                        <td>Feb 22</td>
+                        <td>
+                          <b>Reading Week</b><br/>
+                          
+                        </td>
+                        <td></td>
+                        <td></td>
+                        
+                    </tr>
+	             
+                    
+                    <tr>
+                        <td>8</td>
+                        <td>Mar 1</td>
+                        <td>
+                          <b>Inverse Reinforcement Learning #1</b><br>
+			  <a href="https://www.aaai.org/Papers/AAAI/2008/AAAI08-227.pdf">Maximum entropy inverse reinforcement learning</a><br/>
+			  <a href="https://arxiv.org/abs/1603.00448">Guided Cost Learning: Deep inverse optimal control via policy optimization</a><br/>
+			  <a href="https://arxiv.org/abs/1507.04888">Maximum entropy deep inverse reinforcement learning</a><br/>
+			  <a href="https://dl.acm.org/citation.cfm?id=1143936">Maximum margin planning</a><br/>
+			  
+			  <br/> 
+			  <b>Optional Reading: Applications of IRL</b><br/>
+			  <a href="http://journals.sagepub.com/doi/10.1177/0278364915619772">Socially compliant mobile robot navigation via inverse reinforcement learning</a><br/>
+			  <a href="http://www.cim.mcgill.ca/~florian/pdfs/pursuit-icra2018.pdf">Model-based probabilistic pursuit via inverse reinforcement learning</a><br/>
+			  <a href="https://arxiv.org/abs/1612.07796">First-person activity forecasting with online inverse reinforcement learning</a><br/>
+			  <a href="https://www.ias.informatik.tu-darmstadt.de/uploads/Site/EditPublication/Muelling_BICY_2014.pdf">Learning strategies in table tennis using inverse reinforcement learning</a><br/>
+			  <a href="https://www.ri.cmu.edu/pub_files/2009/10/planning-based-prediction-pedestrians.pdf">Planning-based prediction for pedestrians</a><br/>
+			  <a href="http://www.cs.cmu.edu/~kkitani/pdf/KZBH-ECCV12.pdf">Activity forecasting</a><br/>
+			  
+                        </td>
+                        <td></td>
+                        <td></td>
+                        
+                    </tr>
+   
+                    <tr>
+                        <td>9</td>
+                        <td>Mar 8</td>
+                        <td>
+                          <b>Inverse Reinforcement Learning #2</b><br>
+			  <a href="http://rss2017.lids.mit.edu/program/papers/04/">Active preference-based learning of reward functions</a><br/>
+			  <a href="http://journals.sagepub.com/doi/abs/10.1177/0278364917745980">Inverse KKT: Learning cost functions of manipulation tasks from demonstrations</a><br/>
+			  <a href="https://www.aaai.org/Papers/IJCAI/2007/IJCAI07-416.pdf">Bayesian inverse reinforcement learning</a><br/>
+			  <a href="https://pf.is.mpg.de/publications/doerr-rss-15">Direct loss minimization inverse optimal control</a><br/>
+			  
+			  <br/> 
+			  <b>Optional Reading</b><br/>
+			  <a href="https://arxiv.org/abs/1711.02827">Inverse reward design</a><br/>
+			  <a href="https://papers.nips.cc/paper/4420-nonlinear-inverse-reinforcement-learning-with-gaussian-processes">Nonlinear inverse reinforcement learning with gaussian processes</a><br/>
+			  <a href="https://papers.nips.cc/paper/6800-compatible-reward-inverse-reinforcement-learning.pdf">Compatible reward inverse reinforcement learning</a><br/>
+			  <a href="https://arxiv.org/abs/1512.05832">Learning the preferences of ignorant, inconsistent agents</a><br/>
+			  
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+     
+	            <tr>
+                        <td>10</td>
+                        <td>Mar 15</td>
+                        <td>
+                          <b>Shared Autonomy for Robot Control with Human in-the-Loop</b><br>
+			  <a href="http://bair.berkeley.edu/blog/2018/04/18/shared-autonomy/">Shared autonomy via deep reinforcement learning</a><br/>
+			  <a href="http://www.cim.mcgill.ca/~mrl/pubs/anqixu/icius2014_apexcommander.pdf">Interactive autonomous driving through adaptation from participation</a><br/>
+			  <a href="https://www.ri.cmu.edu/pub_files/2015/7/Javdani15Hindsight.pdf">Shared autonomy via hindsight optimization</a><br/>
+			  <a href="https://arxiv.org/abs/1808.08268">Learning models for shared control of human-machine systems with unknown dynamics</a><br/>
+			  
+			  
+			  <br/> 
+			  <b>Optional Reading</b><br/>
+			  <a href="https://www.cc.gatech.edu/social-machines/papers/cakmak12_hri_active.pdf">Designing robot learners that ask good questions</a><br/>
+			  <a href="https://ieeexplore.ieee.org/document/1513835/">Blending human and robot inputs for sliding scale autonomy</a><br/>
+			  <a href="https://ieeexplore.ieee.org/document/7799299/">Inferring and assisting with constraints in shared autonomy</a><br/>
+			  <a href="https://ieeexplore.ieee.org/document/6135817/">Collaborative control for a robotic wheelchair: evaluation of performance, attention, and workload</a><br/>
+                          <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/rob.21681">Director: A user interface designed for robot operation with shared autonomy</a><br/>
+                          <a href="http://www.roboticsproceedings.org/rss14/p43.html">RelaxedIK: Real-time synthesis of accurate and feasible robot arm motion</a><br/>
+        
+                          
+                        </td>
+                        <td></td>
+                        <td></td>
+                        
+                    </tr>
+
+
+		    <tr>
+                        <td>11</td>
+                        <td>Mar 22</td>
+                        <td>
+                          <b>Adversarial Imitation Learning</b><br>
+			  <a href="https://arxiv.org/abs/1606.03476">GAIL: Generative adversarial imitation learning</a><br/>
+			  <a href="https://arxiv.org/abs/1612.02179">Model-based adversarial imitation learning</a><br/>
+			  <a href="https://arxiv.org/abs/1703.08840">InfoGAIL: interpretable imitation learning from visual demonstrations</a><br/>
+			  <a href="https://arxiv.org/abs/1605.08478">Model-free imitation learning with policy optimization</a><br/>
+			  
+                        </td>
+                        <td></td>
+                        <td></td>
+                        
+                    </tr>
+	      
+		    
+	            <tr>
+                        <td>12</td>
+                        <td>Mar 29</td>
+                        <td>
+                          <b>Project Presentations</b><br>
+                           
+                        </td>
+                        <td></td>
+                        <td></td>
+                        
+                    </tr>
+
+                    <tr>
+                        <td>13</td>
+                        <td>Apr 5</td>
+                        <td>
+                            <b>Project Presentations</b><br>
+		        </td>
+                        <td></td>
+                        <td></td>
+                        
+                    </tr>
+     
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    
+    <div class="rt">
+      <h3>Recommended, but optional, books</h3>
+        <ul>
+          <li>Robot programming by demonstration, by Aude Billard, Sylvain Calinon, Rudiger Dillmann, Stefan Schaal</li>
+          <li>Robot learning from human teachers, by Sonia Chernova, Andrea Thomaz</li>
+	  <li>An algorithmic perspective on imitation learning, by Takayuki Osa, Joni Pajarinen, Gerhard Neumann, Andrew Bagnell, Pieter Abbeel, Jan Peters</li>
+	</ul>
+    </div>
+
+
+    <div class="rc">
+      <h3>Recommended simulators</h3>
+      You are encouraged to use the simplest possible simulator to accomplish the task you are interested in. In most cases this means Mujoco, but feel free to build your own.<br/>
+      For all the starred environments below, please be aware of the 1-machine/student licensing restriction for the Mujoco physics engine:<br/><br/>
+      <ul>
+          <li><a href="https://gym.openai.com/envs/#robotics">OpenAI Gym</a> (Robotics*, Mujoco*, Box2D, Classic Control)</li>
+          <li><a href="https://github.com/deepmind/dm_control">DeepMind control suite</a>*</li>
+          <li><a href="https://github.com/StanfordVL/robosuite">Surreal Robosuite</a> (manipulation*)</li>
+          <li><a href="http://motion.pratt.duke.edu/klampt/">Klampt</a> (manipulation and locomotion tasks, contact modeling)</li>
+          <li><a href="http://dartsim.github.io/">DART</a> (manipulation and locomotion tasks, contact modeling)</li>
+          <li><a href="https://github.com/udacity/self-driving-car-sim">Udacity self-driving car simulator</a> (based on Unity, needs a GPU)</li>
+          <li><a href="http://carla.org/">CARLA self-driving car simulator</a> (based on Unreal Engine 4, needs a GPU)</li>
+          <li><a href="https://holodeck.cs.byu.edu/">Holodeck</a> (based on Unreal Engine 4, needs a GPU)</li>
+          <li><a href="https://github.com/Microsoft/AirSim/">AirSim</a> (flying vehicles and cars, based on Unreal Engine 4, needs a GPU)</li>
+          <li><a href="https://github.com/ugo-nama-kun/gym_torcs">TORCS self-driving car simulator</a></li>
+          <li><a href="http://www.coppeliarobotics.com/">V-REP</a> (robot arms, humanoids, hexapods)</li>
+          <li><a href="https://github.com/deepmind/lab">DeepMind Lab</a> (navigation in mazes)</li>
+          <li><a href="https://github.com/StanfordVL/GibsonEnv">Gibson environment</a> (navigation, locomotion in indoor environments, needs a GPU)</li>
+          <li><a href="https://home-platform.github.io/">HoME: Household multimodal environment</a> (vision, audio, language grounding, physics, and multiple agents in indoor environments)</li>
+          
+	</ul>
+    </div>
+
+
+    <div class="rc">
+      <h3>Resources for planning, control, and RL</h3>
+      <ul>
+        <li><a href="http://ompl.kavrakilab.org/">Open Motion Planning Library</a></li>
+        <li><a href="https://gym.openai.com/envs/#robotics">Control Toolbox from ETHZ</a> (C++ only at the moment, but includes automatic differentiation)</li>
+        <li><a href="http://rll.berkeley.edu/trajopt/doc/sphinx_build/html/">Trajectory optimization</a></li>
+        <li><a href="https://github.com/resibots/blackdrops">Black-DROPS Policy Search</a> (C++ only at the moment)</li>
+        <li><a href="http://rll.berkeley.edu/gps/">Guided Policy Search</a></li>
+        <li><a href="https://github.com/openai/baselines">OpenAI Baselines</a></li>
+      </ul>
+    </div>
+
+
+    
+    <div class="rc">
+      <h3>Recommended courses</h3>
+      <ul>
+	<li><a href="https://sites.google.com/site/boularias/robotlearningseminar">Robot Learning Seminar</a> by Abdeslam Boularias</li>
+	<li><a href="http://rll.berkeley.edu/deeprlcoursesp17/">Deep RL course</a> by Sergey Levine, John Schulman, Chelsea Finn</li>
+	<li><a href="http://web.cs.toronto.edu/Graduate/currentgradstudents/Graduate_Course_Descriptions.htm#csc2541s">Deep RL course</a> by Jimmy Ba</li>
+	<li><a href="http://wcms.inf.ed.ac.uk/ipab/rlsc">Robot Learning and Sensorimotor Control course</a>  by Sethu Vijayakumar</li>  
+	<li><a href="http://people.eecs.berkeley.edu/~anca/AHRI.html">Algorithmic HRI course</a> by Anca Dragan</li>
+        <li>Related sections from <a href="https://www.edx.org/course/underactuated-robotics-mitx-6-832x-0">Russ Tedrake's underactuated robotics course</a>
+      </ul>  
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./js/bootstrap.min.js"></script>
+</body>
+</html>
