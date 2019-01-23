@@ -10,43 +10,51 @@
 \title{CSC2621: Assignment 1\\Due Tuesday, February 5  at 6pm}
 \author{}
 
+\def\code#1{\texttt{#1}}
+
 \begin{document}
 
 \maketitle
 
 
 \section{Introduction}
-The goal of this assignment is to help you get familiar with imitation learning and DAgger applied to the driving domain. In order to automate the process of expert demonstrations,
-without relying on human input, we have modified a car racing environment in OpenAI Gym to also provide expert demonstrations from a feedback controller that allows the car 
-to do road following. Unlike the feedback controller that has access to the true state and coordinates of the track, your driving policy will only have access to an image
-and will output a steering command. 
+The goal of this assignment is to help you get familiar with imitation learning and DAgger applied to the driving domain, and to also ensure that you are able to solve supervised learning
+tasks with neural networks. In order to automate the process of expert demonstrations, without relying on human input, we have modified a car racing environment in OpenAI Gym to also provide 
+expert demonstrations from a feedback controller that allows the car to do road following. Unlike the feedback controller that has access to the true state and coordinates of the track, your 
+driving policy will only have access to an image and will output a steering command. 
 
 
 \section{Setting Up}
-
-
-
-
-In this exercise you are going to implement parts of the occupancy grid mapping system discussed in class. In particular, you are going to map an environment 
-based on known odometry estimates and known 2D laser scans. Do \path{git} $\;$ \path{pull} under your comp417 repository to get the starter code. The functionality 
-that you need to implement is marked using to-do comments in the file \path{estimation_assignment/python/occupancy_grid_mapper.py}. To run your code, 
-\path{cd} $\;$ \path{path/to/comp417/estimation_assignment/} and execute the following commands on three different terminals: 
+This assignment assumes that you are running some version of Ubuntu between 16.04 to 18.04. If you are a Windows or Mac user and you are experiencing issues, please
+email the instructor early on to try to resolve them.
 \newline
 
-  \path{rosbag} $\;$ \path{play} $\;$ \path{laser_and_odometry.bag}
-  
-  \path{roslaunch} $\;$ \path{estimation_assignment} $\;$ \path{occupancy_grid_mapping.launch} $\;$ \path{odometry_orientation_noise_std_dev:=2.5} $\;$ \path{odometry_position_noise_std_dev:=0.1}
-  
-  \path{rosrun} $\;$ \path{rviz} $\;$ \path{rviz} 
+\noindent \textbf{Starter code} Run \code{git clone https://github.com/florianshkurti/csc2621w19.git} in order to get the starter code for this assignment. This should create the directory
+\code{csc2621w19}.
 \newline
+
+\noindent \textbf{Virtualenv} Set up a python virtualenv environment in the directory \code{csc2621w19/assignments/}, so that you can install python packages without requiring administrative
+rights in the computer you are using. Specifically, run \code{virtualenv -p python3 myenv}, which will setup a Python3 environment under the directory \code{myenv}. Run \code{source ./myenv/bin/activate}
+in order to activate that virtual environment. Now you can begin installing python dependencies. Start with \code{pip3 install scikit-image}
 \newline
-\noindent When rviz initializes, go to \path{File} $>$ \path{Open Config} and then load the configuration file in \path{estimation_assignment/resources/comp417.rviz}
-which is going to start the visualization of laser scan messages, frames of reference, and debugging visualizations. Save this configuration file as the default
-in your \path{/home/username/.rviz/default.rviz}, so you won't have to do this every time you restart rviz. In the \path{roslaunch} command given above, the standard deviation of 
-the odometry orientation noise is given in degrees. In this example the true yaw of the robot is corrupted by random noise from $\mathcal{N}(0, 2.5^2)$. Similarly, the true position 
-is corrupted by random noise from $\mathcal{N}(0, 0.1^2)$, which is expressed in meters. \path{laser_and_odometry.bag} is a recording of laser scans and odometry data in the environment 
-you used in Assignment 1. The expected result for perfect odometry looks similar to Figure \ref{fig:gmapping}. 
+
+\noindent \textbf{Pytorch} Follow the instructions at \url{https://pytorch.org/get-started/locally/} to install Pytorch 1.0 for CPU or GPU, depending on whether your system has access to a GPU.
+If you have a GPU you will also need to know which version of CUDA is your system running. You can do this by executing \code{nvcc --version}. If you don't have a GPU select \code{None} when choosing
+the CUDA version.
 \newline
+
+\noindent \textbf{OpenAI Gym} Run \code{pip3 install gym} and then \code{pip3 install box2d-py}. This assignment has been tested with Gym version \code{0.10.9}. 
+\newline
+
+\noindent \textbf{Initial training set} The assignment repository includes an initial dataset of images annotated with expert actions, which you can use for the first round of training a steering network.
+Run \code{cd assignments/A1} and then \code{unzip dataset.zip}.
+\newline
+
+\noindent \textbf{Run the expert} Try to run \code{python3 racer.py --expert\_drives=True}. If you see a car driving in the middle of the track your installation works. The expert in this case is a feedback
+controller with only 4 parameters that have been tuned. However, the expert has access to extra information, such as the distance of the car from the middle of the road, while your learner will only have
+access to the image. 
+
+
 % \begin{figure}[h]
 %   \begin{center}
 %     \includegraphics[width=0.5\textwidth]{gmapping}
@@ -54,57 +62,50 @@ you used in Assignment 1. The expected result for perfect odometry looks similar
 %   \caption{Part of the robot's mapping task during the (0,0) noise trajectory.}
 %   \label{fig:gmapping}
 % \end{figure}
+%\noindent What you need to submit: 5 images of maps produced by your mapper, with noise parameters (0, 0), (2.5, 0), (5, 0), (2.5, 0.1), (5, 0.1) respectively. 
+%Your images should be named \path{map_[0|1|2|3|4]_firstname_lastname.png}. Also, submit a video recording of the rviz visualization for the odometry noise combination (0,0),
+%demonstrating your map being built from beginning to end. Your video should be named \path{map_0_firstname_lastname.mp4/avi/ogg}. 
+
+\section{Supervised Learning (10 pts)}
+Fill in the code for the training procedure in \code{train\_policy.py}. If you have a GPU make sure that in \code{utils.py} the device is set to \code{cuda}. Otherwise, set it to \code{cpu}.   
+To start the training procedure run \code{python3 train\_policy.py --n\_epochs=50 --batch\_size=256 --weights\_out\_file=./weights/learner\_0\_supervised\_learning.weights}
+\newline \code{--train\_dir=./dataset/train/ --weighted\_loss=False}
 \newline
+
+\noindent Also fill the network architecture in \code{driving\_policy.py}. Start with an architecture that is similar, but not identical, to the NVIDIA end-to-end driving paper, even though it likely has too many parameters 
+for fitting the dataset used in this assignment. For the features of the convolutional network start with this sequential model: \code{24 conv, relu, 36 conv, relu, 48 conv, relu, 64 conv, relu, flatten}, where each 
+convolutional layer (called Conv2d in Pytorch) uses a kernel/window of size 4, stride of size 2, and 1 pixel padding. For the classifier start with this fully connected model: \code{fc 4096, relu, fc 128, relu, fc 64, 
+relu, fc n\_classes, relu} where \code{fc} stands for a fully-connected layer (called Linear layer in Pytorch). The output of the network will be the probability of \code{n\_class} possible steering directions,
+just like in the ALVINN paper. You are not however required to implement the gaussian-shaped discrete predictions that Pomerlau used to make consecutive classes nearby in terms of the angle they represent. 
+You should optimize the categorical cross-entropy loss to learn a mapping from images to actions.   
+\newline           
+
+\noindent Now, try to execute the learner's policy on the simulator. You should see that the initial policy eventually gets outside the race track before completing one full round of driving. You
+should also observe that the steering policy is wobbly on straight lines. You are not required to fix that for the purposes of this assignment. 
+
+
+\section{Weighted Classification Loss (5 pts)}
+The majority of the expert demonstrations you will have in your dataset will be for driving straight ahead. Your training set will have a significant class imbalance, where the labels corresponding to
+driving straight ahead (e.g. classes {9,10,11} if \code{n\_classes=20}) will occur much more frequently than sharp turns. One reasonable question to ask is whether taking this class imbalance into account
+when training the learner could help. To answer that question use a weighted loss that weighs errors in each class according to the inverse frequency of occurrence. In Pytorch the \code{cross\_entropy} loss 
+function allows you to specify such weights. Implement this minor change in \code{train\_policy.py} and rerun supervised learning with the weighted loss: \code{python3  train\_policy.py --n\_epochs=50 
+--batch\_size=256 --weights\_out\_file=./weights/learner\_0\_weighted\_loss.weights} \newline \code{--train\_dir=./dataset/train/ --weighted\_loss=True}
 \newline
-\noindent What you need to submit: 5 images of maps produced by your mapper, with noise parameters (0, 0), (2.5, 0), (5, 0), (2.5, 0.1), (5, 0.1) respectively. 
-Your images should be named \path{map_[0|1|2|3|4]_firstname_lastname.png}. Also, submit a video recording of the rviz visualization for the odometry noise combination (0,0),
-demonstrating your map being built from beginning to end. Your video should be named \path{map_0_firstname_lastname.mp4/avi/ogg}. 
 
-\section{Least squares localization (5pts)}
-In this exercise you are going to solve the localization problem in a map of known landmarks. In particular, assume your robot
-has 2D state $\textbf{x}_t=[p_x(t) \; p_y(t)]^T$ and an omnidirectional motion model $\textbf{x}_{t+1}=\textbf{x}_t + \textbf{u}_t\delta t + \textbf{w}_t$, where $\textbf{w}_t \sim \mathcal{N}(0, \sigma_w^2\textbf{I})$
-The robot is moving through an environment that has L static landmarks $\textbf{l}_1, ..., \textbf{l}_L$ whose positions are known.
-Occasionally the robot makes the following set of measurements: $z_t^{(i)}=||\textbf{x}_t-\textbf{l}_i||+n_t$ where $n_t \sim \mathcal{N}(0, \sigma_n^2)$, for some of the available landmarks.
-Your goal is to estimate the sequence of states $\textbf{x}_{1:T}$ by minimizing a least squares cost function. 
-\newline
-\newline
-\noindent You can find starter code in \path{estimation_assignment/python/localization.py}. It provides the set of measurements made at each timesteps. Your task is to implement the cost 
-function using \path{numpy} and the nonlinear least squares solver in \path{scipy.optimize.least_squares}. There are to-do comments in the code that explain in detail what you need to implement. 
-After you are done with your implementation, the expected outcome is the following figure:
-% \begin{figure}[h]
-%   \begin{center}
-%     \includegraphics[width=\textwidth]{localization}
-%   \end{center} 
-%   \caption{The robot starts at (0,0) and moves throughout the world, making measurements of static, known landmarks.}
-% \end{figure}
+\noindent You will see that the vehicle still veers off track. 
 
-\noindent What you need to submit: your code in the file \path{estimation_assignment/python/localization.py}.
-\newline
-\newline
-P.S.: You can think of cell phone localization based on static cell towers as a particular application of this problem.  
+\section{DAgger (5 pts)}
+Implement DAgger in \code{dagger.py} and run \code{python3 dagger.py}. For 10 DAgger iterations you will need to wait about 6-7 hours if you have a GPU or about double that if you only have a CPU. If you
+face any problems with this please let me know. This process should generate weights \code{learner\_0.weights, ..., learner\_10.weights} at the end of each DAgger iteration. Also, keep in mind that when you 
+run this procedure the training set in \code{dataset/train} will be augmented with expert-labeled images from the execution of the learner's policy. Images from the $i^{\text{th}}$ DAgger run will be saved under 
+\code{dataset/train/expert\_i\_t\_cmd.jpg}, where \code{t} is the timestep of the image recorded during the $i^{\text{th}}$ run, and \code{cmd} is the corresponding steering command that the expert issued for 
+that image in [-1,1].  
 
-\subsection{Bonus (1pt)}
-Try to convert this localization problem into range and bearing GraphSLAM. The dynamics of the robot should be those of the Dubins car. 
-The measurement model should consist of the range and the bearing of a landmark with respect to the robot's body frame. If you do
-this bonus question save your work in a file called \path{estimation_assignment/python/graphslam.py} 
+\noindent You should observe that as the training set increases the resulting policy will eventually be able to remain within the track and fully traverse it.
 
-\subsection{Bonus (1pt)}
-Try to implement the localization problem given above in one of the following three frameworks, which specialize in solving least squares
-problems in robotics: \path{GTSAM}\footnote{\url{https://collab.cc.gatech.edu/borg/gtsam}}, \path{g2o}\footnote{\url{https://github.com/RainerKuemmerle/g2o}}, \path{Ceres}\footnote{\url{http://ceres-solver.org/}}. 
-Depending on your choice of framework, and whether you use Python bindings or not, this might involve writing a C++ version of the starter code provided above.
+\section{What/How to submit}
+Submit a file called \path{assignment_firstname_lastname_studentid.zip} that contains the starter code and your extensions to the provided starter code, under the directory \code{assignments/A1}. 
+This zip file will include your changes to the files \code{train\_policy.py, driving\_policy.py, dagger.py} and the learner weights for each question (12 weight files in total). Submissions should be 
+done on Quercus. You do not need to include a writeup of your solutions. 
 
-
-\section{Extended Kalman Filter (2.5pts)}
-Assume you have a robot that follows Dubins car dynamics on the plane. Its state is $\textbf{x}_t=[p_x(t) \; p_y(t) \; \theta(t)]$. Also assume that you have
-three landmarks $\textbf{l}_i=[l_x^{(i)} \; l_y^{(i)}]$ in the world. At each point in time the robot observes all three landmarks, with some sensor noise.
-The measurement model consists of the Euclidean distances from the robot's current state to each of the three landmarks, plus noise. Formulate an EKF estimator for this problem.
-Specifically, formally define the dynamics model, the observation model, their Jacobians, and the covariances of their noise processes. There is no implementation
-required for this question, but if you want to do it, you can find starter code at \path{path/to/comp417/filtering_examples/python}. 
-
-\section{How to submit}
-Submit all your work in a file called \path{estimation_assignment.zip} that contains your extensions to the provided starter code, as well as the five images, the video, and the pdf file. 
-Submissions will be done on myCourses. 
-
-\section{A note on indentation}
-Please make sure your editor uses spaces instead of tab characters, otherwise your TAs will have a hard time reading your code on their editors, which might be different from yours.
 \end{document}

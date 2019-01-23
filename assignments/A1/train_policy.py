@@ -9,7 +9,7 @@ import time
 import os
 
 from dataset_loader import DrivingDataset
-from driving_policy import DrivingPolicy, DiscreteDrivingPolicy
+from driving_policy import DiscreteDrivingPolicy
 from utils import DEVICE, str2bool
 
 def train_discrete(model, iterator, opt, args):
