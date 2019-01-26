@@ -1,0 +1,113 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\usepackage[margin=0.75in]{geometry}
+
+%opening
+\title{CSC2621: Project Guidelines}
+\author{}
+\date{}
+
+\def\code#1{\texttt{#1}}
+
+\begin{document}
+
+\maketitle
+
+
+\section{Introduction}
+CSC2621 involves a course project in which you will implement a research idea on the topic of imitation learning, preferably related to robotics (e.g. control, human-robot interaction, computer vision) 
+or related areas. Any of the broad topic descriptions on the course website, under which weekly readings are listed, can act as a good starting point for picking a project. The purpose of the final project
+is to give you the chance to spend a significant amount of time focusing on a single research direction. The types of projects that we envision include the following:
+
+\begin{itemize}
+ \item Implement the main algorithm described in one of the papers listed on the course website, try to replicate the results, and run it in 2-3 new scenarios.
+ \item Provide an empirical evaluation and comparison of at least three algorithms from the papers in the reading list, on 1-2 illustrative scenarios.
+ \item Extend the main algorithm described in one of the papers listed on the course website in a non-trivial way, and evaluate it on 1-2 new scenarios.
+ \item Invent a new algorithm, and provide sufficient evaluation to demonstrate the merit of the idea, at minimum 1-2 scenarios.
+\end{itemize}
+
+\noindent You can get full marks for a project in any of these categories. You are not expected to produce a novel research idea, although courses like this are meant to 
+create the conditions for students to attempt it. We encourage you to try.  
+\newline
+
+
+\noindent \textbf{Collaboration}: You need to form groups of 2-3 for the course project. Exceptions to this rule can be made only in rare cases provided there is good reason to do so. 
+Email the instructor if this applies to you. If you do not know anyone in class feel free to post a message on Quercus (reaching everyone) or on the course's google group (reaching only 
+those who subscribed). We will also set aside some time after class on Feb 1st for students who are looking for collaborators to find each other and discuss forming a group.
+
+\section{Important Dates}
+
+\begin{itemize}
+ \item Proposal due on Monday, Feb 11 at 6pm.  
+ \item Midterm progress report due on Friday, Mar 1 at 6pm.
+ \item In-class presentation (about 5-10 mins) on March 29 or Apr 5.
+ \item Final report and code due on April 10. 
+\end{itemize}
+
+\section{Proposal (10\%, Feb 11)}
+
+You are expected to describe a well-defined research goal in the proposal. When choosing this goal try to identify the minimum viable objective that you think is likely to work and you can accomplish, 
+just to get you started, some nice-to-haves that you will do provided there is time, and a short review of related work. The definition of your research project may change during the
+course of a month and a half that you will be working on your project, but your proposal should be as specific and well-defined as possible, otherwise we cannot provide helpful feedback. If you are unsure
+about your plans, contact the instructor well before the proposal due date. Proposals should not be based only on papers covered in class by the due date. Students are encouraged to look further ahead in 
+the schedule and to start planning their project definition well ahead of the due date. 
+\newline
+\newline
+Proposals are limited to 2 pages, with the following suggested structure: 1/4 page for abstract/introduction to the problem, 1/2 page for related work, 1/2 page for the method, 
+1/2 page for proposed evaluation, 1/4 page for references. Proposals should follow the template provided by the Conference on Robot Learning (CoRL) \url{http://www.robot-learning.org/home/paper-submission}. 
+E-mail your proposal in pdf form to the instructor. Make the subject line ``CSC2621 Proposal''. Student co-authors should be listed alphabetically in the proposal.  
+
+\subsection{Can I extend a project I completed in a previous class?}
+Yes, you are welcome to do this as long as you provide your final report from that class and include an appendix to the proposal that clarifies what is being added to the previous project.  
+
+\subsection{Can I extend a project I completed or am working on as part of my research/thesis?}
+Yes, you are welcome to do this as long as you include an appendix to the proposal that clarifies what is being added to the research you have done so far outside this course.  
+
+\subsection{Which simulator or dataset should I use?}
+Use the one that is going to allow you to quickly try ideas and prototype. I would not recommend starting with game engines like Unreal Engine 4 and Unity, unless you know what you are doing.
+Similarly, choose the easiest dataset to get started. Toy data is fine. So are simple scenarios. Start with the easiest and most predictable setting/environment, and only increase complexity 
+if you are making progress. I do not suggest starting from the most complex environment and gradually moving to simpler ones.
+
+\subsection{I need a GPU but I don't have access to one. What should I do?}
+Let me know early on if this is a problem. You should also look into Google Colab \url{https://colab.research.google.com/}, and any GPU desktops provided by your department (if any). 
+
+\subsection{Can I use a real robot?}
+Yes, but only after you have a well-defined project and your midterm progress report looks promising.  
+
+\section{Midterm Progress Report (10\%, Mar 1)}
+This is a three page document. The first two pages contain a copy of your project proposal. The other page includes: 3/4 page status update, presenting what you have accomplished so far (include figures 
+and results), and 1/4 page describing your next steps. In your next steps indicate if you intend to use a real robot. E-mail your proposal in pdf form to the instructor. Make the subject line ``CSC2621 Progress''.  
+    
+
+\section{Presentation (10\%, Mar 29/Apr 5)}
+This is a 5-10min presentation in class, during which you will present the main idea of your project and the progress you have made until that point. It is not required that you have finished your project by 
+this point.   
+
+
+\section{Final Report and Code  (30\%, Apr 10)}
+
+The final report needs to have at least five pages that include: 1/4 page abstract, 1/2 page introduction, 1/2 page related works, 1.5+ pages describing your method, 1.5+ pages describing your results and evaluation,
+1/2 page limitations. The final report may include as many references and appendices as you need. Figures and tables are encouraged. Final reports should follow the same paper template as the proposal. 
+E-mail your final project report in pdf form, and a zip file with your code or a link to a github repository to the instructor. Make the subject line ``CSC2621 Final report + code''. Student co-authors should be 
+listed alphabetically. The final report should contain an appendix outlining what each team member contributed to the project. 
+
+\subsection{Marking rubric for the final project}
+
+\begin{enumerate}
+ \item Abstract (2 pts) that summarizes the main idea of the project and your contributions.
+ \item Introduction (3 pts) that states the problem being solved and any applications / implications.
+ \item Figure or diagram (2 pts) that shows the overall idea. 
+ \item Related work (2 pts) and bibliography. Highlight how your method is different from other approaches. Present other approaches in the proper light without diminishing their contributions.
+ \item Methodology (10 pts) Describe your method in detail as well as any assumptions it relies on. Explain prerequisite concepts clearly and succinctly. Include algorithm descriptions, figures, and equations 
+       as you wish.  
+ \item Evaluation (8 pts) Include any figures or tables that illustrate your experimental results. Do not forget to include error bars if applicable. Analyze your findings, and comment on their 
+ statistical significance. In your evaluation please take into account the reproducibility checklist \url{https://www.cs.mcgill.ca/~jpineau/ReproducibilityChecklist.pdf}.  
+ \item Limitations (2 pts) Describe some settings in which your approach performs poorly, and list a few ideas for how to adddress them. Describe opportunities for future work, as well as open problems.
+ \item Conclusions (1 pts) A summary of what you accomplished.
+\end{enumerate}
+
+\end{document}

@@ -99,20 +99,19 @@
 	  <li><b>Assignment</b> (20%): The assignment is now posted <a href="assignments/A1/tex/A1.pdf">here</a></li>
 	  
 	  <li><b>Project Proposal</b> (10%): Due Feb 11 at 6pm. Students can take on projects in groups of 2-3 people.
-	    Tips for a good project proposal can be found <a href="">here</a>. Proposals should not be based only on papers covered in class by Feb 11th.
+	    Tips for a good project proposal can be found <a href="assignments/Project/project_guidelines.pdf">here</a>. Proposals should not be based only on papers covered in class by Feb 11th.
 	    Students are encouraged to look further ahead in the schedule and to start planning their project definition well ahead of this deadline.
 	    Students who need help choosing or crystallizing a project idea should email the instructor. Project proposals that involve the use of real
 	    robot hardware should clearly indicate so, to allow sufficient time for the instructor to arrange this.
 	  </li>
 	  
-	  <li><b>Progress Reports</b> (10%): Due Mar 4. Each group will submit a midterm progress report, no longer than 2 pages,
-	    in order to show progress that has been made in the project up to that date. Tips and expectations for a good midterm progress report are <a href="">here</a>.
+	  <li><b>Midterm Progress Report</b> (10%): Due Mar 1 at 6pm. Tips and expectations for a good midterm progress report are <a href="assignments/Project/project_guidelines.pdf">here</a>.
 	  </li>
 
-	  <li><b>Project Presentation</b> (10%): Due Mar 29 or Apr 5. This will be a short presentation, approximately 10 minutes, depending on
-	    the number of groups.</li>
+	  <li><b>Project Presentation</b> (10%): Due Mar 29 or Apr 5. This will be a short presentation, approximately 5-10 minutes, depending on the number of groups.
+          </li>
 	  
-	  <li><b>Project Report and Code</b> (30%): Due Apr 10. Tips and expectations for a good final project report can be found <a href="">here</a>.</li>
+	  <li><b>Project Report and Code</b> (30%): Due Apr 10. Tips and expectations for a good final project report can be found <a href="assignments/Project/project_guidelines.pdf">here</a>.</li>
 	</ul>  
 	
 	
@@ -181,8 +180,7 @@
 			  <a href="http://people.eecs.berkeley.edu/~somil/Papers/lqrlecture.pdf">Linear Quadratic Regulator</a> and some <a href="https://web.stanford.edu/class/ee103/lectures/control_slides.pdf">examples</a><br/>
 			  <a href="https://homes.cs.washington.edu/~todorov/papers/LiICINCO04.pdf">Iterative Linear Quadratic Regulator</a><br/>
 			  <a href="https://ieeexplore.ieee.org/document/845037">Model Predictive Control</a><br/>
-                          <a href="https://people.eecs.berkeley.edu/~svlevine/papers/mfcgps.pdf">Learning neural network policies with guided policy search under unknown dynamics</a><br/>
-
+                          
                           <br/> 
 			  <b>Required Background Reading</b><br/>
 			  <a href="http://www.argmin.net/2018/06/25/outsider-rl/">Ben Recht: An outsider's tour of RL</a> (watch his <a href="https://people.eecs.berkeley.edu/~brecht/l2c-icml2018/">ICML'18 tutorial</a>, too)<br/>
@@ -193,8 +191,11 @@
                           <a href="https://arxiv.org/abs/1805.12114">Deep reinforcement learning in a handful of trials using probabilistic dynamics models</a><br/>
 			  <a href="https://arxiv.org/abs/1810.01566">Learning particle dynamics for manipulating rigid bodies, deformable objects, and fluids</a><br/>
                           <a href="https://papers.nips.cc/paper/7948-end-to-end-differentiable-physics-for-learning-and-control">End-to-end differentiable physics for learning and control</a><br/>
+                          <a href="https://arxiv.org/abs/1803.02291">Synthesizing neural network controllers with probabilistic model based reinforcement learning</a><br/>
                           <a href="https://arxiv.org/abs/1807.02303">A survey on policy search algorithms for learning robot controllers in a handful of trials</a><br/>
                           <a href="https://journals.sagepub.com/doi/abs/10.1177/0278364913495721">Reinforcement learning in robotics: a survey</a><br/>
+                          <a href="http://deepmpc.cs.cornell.edu/">DeepMPC: Learning deep latent features for model predictive control</a><br/>
+                          <a href="https://arxiv.org/abs/1807.03858">Algorithmic framework for model-based deep reinforcement learning with theoretical guarantees</a><br/>
                           
                         </td>
                         <td>Florian</td>
@@ -232,6 +233,7 @@
                         <td>Feb 1</td>
                         <td>
                           <b>Imitation Learning Combined with Reinforcement Learning, Control, and Planning #1</b><br>
+                          More detailed discussion of Dropout and different types of uncertainty (continued from last week)<br/> 
 			  <a href="https://arxiv.org/abs/1406.5979">AggreVaTe: Reinforcement and imitation learning via interactive no-regret learning</a><br/>
 			  <a href="https://arxiv.org/abs/1709.07174">Agile off-road autonomous driving using end-to-end deep imitation learning</a><br/>
 			  <a href="https://arxiv.org/abs/1710.02410">End-to-end driving via conditional imitation learning</a><br/>
@@ -247,7 +249,7 @@
 			  
 			  
                         </td>
-                        <td></td>
+                        <td>David<br/>Brenna<br/>Bryan<br/>Wei<br/>Renato<br/>Paul</td>
                         <td></td>
                         
                     </tr>
@@ -256,27 +258,31 @@
                         <td>5</td>
                         <td>Feb 8</td>
                         <td>
-                          <b>Imitation Learning Combined with Reinforcement Learning, Control, and Planning #2</b><br>
-                          <a href="https://ieeexplore.ieee.org/document/6630832/">Model-based imitation learning by probabilistic trajectory matching</a><br/>
-			  <a href="https://arxiv.org/abs/1603.00622">PLATO: Policy learning using adaptive trajectory optimization</a><br/>
-			  <a href="https://www.ias.informatik.tu-darmstadt.de/publications/kober_RAM_2010.pdf">Imitation and reinforcement learning: practical learning algorithms for motor primitives in robotics</a><br/>
-			  <a href="https://link.springer.com/article/10.1007/s10514-017-9648-7">Using probabilistic movement primitives in robotics</a><br/>
-
+                          
+                          <b>Imitation as Program Induction and Modular Decomposition of Demonstrations</b><br>
+                          <a href="https://arxiv.org/abs/1710.01813">Neural Task Programming: Learning to generalize across hierarchical tasks</a><br/>
+			  <a href="https://arxiv.org/abs/1803.01840">TACO: Learning task decomposition via temporal alignment for control</a><br/>
+			  <a href="http://journals.sagepub.com/doi/abs/10.1177/0278364917713116">Learning movement primitive libraries through probabilistic segmentation </a><br/>
+                          <a href="http://interactive.mit.edu/bayesian-inference-temporal-task-specifications-demonstrations-0">Bayesian inference of temporal task specifications from demonstrations</a><br/>
+                          
+			  <br/> 
+			  <b>Required Background Reading</b><br/>
+			  <a href="https://ieeexplore.ieee.org/document/6457507/">The motion grammar: analysis of a linguistic method for robot control</a><br/>
+			  <a href="https://arxiv.org/abs/1511.06279">Neural programmer-interpreters</a><br/>
 			  
 			  <br/> 
 			  <b>Optional Reading</b><br/>
-			  <a href="https://arxiv.org/abs/1709.10087">Learning complex dexterous manipulation with deep reinforcement learning and demonstrations</a><br/>
-			  <a href="https://arxiv.org/abs/1804.02717">DeepMimic: Example-guided deep reinforcement learning of physics-based character skills</a><br/>
-                          <a href="https://ropemanipulation.github.io/">Combining self-supervised learning and imitation for vision-based rope manipulation</a><br/>
-                          <a href="https://arxiv.org/abs/1802.05313">Reinforcement learning from imperfect demonstrations</a><br/>
-                          <a href="http://ml.informatik.uni-freiburg.de/former/_media/publications/gr_09.pdf">(Batch) reinforcement learning for robot soccer</a><br/>
+			  <a href="https://www.sciencedirect.com/science/article/pii/S0010027709001607?via%3Dihub">Action understanding as inverse planning</a><br/>
+			  <a href="https://ieeexplore.ieee.org/document/5650500/">Incremental learning of subtasks from unsegmented demonstration</a><br/>
+                          <a href="https://www.ias.informatik.tu-darmstadt.de/uploads/Team/RudolfLioutikov/lioutikov_movement_pcfg_icra2018.pdf">Inducing probabilistic context-free grammars for the sequencing of movement primitives</a><br/>
+                          <a href="https://arxiv.org/abs/1807.03480">Neural Task Graphs: Generalizing to unseen tasks from a single video demonstration</a><br/>
+                          <a href="https://shaohua0116.github.io/demo2program/">Neural program synthesis from diverse demonstration videos</a><br/>
+			  <a href="https://arxiv.org/abs/1809.06305">Automata guided reinforcement learning with demonstrations</a><br/>
+                          <a href="https://www.sciencedirect.com/science/article/pii/S0921889013001449">A syntactic approach to robot imitation learning using probabilistic activity grammars</a><br/>
+                          <a href="http://journals.sagepub.com/doi/abs/10.1177/0278364911428653">Robot learning from demonstration by constructing skill trees</a><br/>
+			  <a href="https://journals.sagepub.com/doi/abs/10.1177/0278364917743319">Transition state clustering: Unsupervised surgical trajectory segmentation for robot learning</a><br/>
+                          <a href="https://ieeexplore.ieee.org/document/6943187">Learning to sequence movement primitives from demonstrations</a><br/>
                           
-			  <br/> 
-			  <b>Optional Reading: Imitation Can Improve Exploration</b><br/>
-			  <a href="https://arxiv.org/abs/1709.10089">Overcoming exploration in reinforcement learning with demonstrations</a><br/>
-			  <a href="https://arxiv.org/abs/1611.04180">Learning to gather information via imitation</a><br/>
-			  <a href="https://dl.acm.org/citation.cfm?id=2936990">Exploration from demonstration for interactive reinforcement learning</a><br/><br/>
-			  
 			</td>
                         <td></td>
                         <td></td>
@@ -287,54 +293,12 @@
                         <td>6</td>
                         <td>Feb 15</td>
                         <td>
-                          <b>Imitation as Program Induction and Modular Decomposition of Demonstrations</b><br>
-			  <a href="https://arxiv.org/abs/1710.01813">Neural Task Programming: Learning to generalize across hierarchical tasks</a><br/>
-			  <a href="https://www.ias.informatik.tu-darmstadt.de/uploads/Team/RudolfLioutikov/lioutikov_movement_pcfg_icra2018.pdf">Inducing probabilistic context-free grammars
-			    for the sequencing of movement primitives</a><br/>
-			  <a href="https://arxiv.org/abs/1803.01840">TACO: Learning task decomposition via temporal alignment for control</a><br/>
-			  <a href="http://journals.sagepub.com/doi/abs/10.1177/0278364911428653">Robot learning from demonstration by constructing skill trees</a><br/>
-			  
-			  <br/> 
-			  <b>Required Background Reading</b><br/>
-			  <a href="https://arxiv.org/abs/1511.06279">Neural programmer-interpreters</a><br/>
-			  <a href="https://ieeexplore.ieee.org/document/6457507/">The motion grammar: analysis of a linguistic method for robot control</a><br/>
-			  
-			  <br/> 
-			  <b>Optional Reading</b><br/>
-			  <a href="http://journals.sagepub.com/doi/abs/10.1177/0278364917713116">Learning movement primitive libraries through probabilistic segmentation </a><br/>
-			  <a href="https://ieeexplore.ieee.org/document/6943187/">Learning to sequence movement primitives from demonstrations</a><br/>
-			  <a href="https://www.sciencedirect.com/science/article/pii/S0010027709001607?via%3Dihub">Action understanding as inverse planning</a><br/>
-			  <a href="https://ieeexplore.ieee.org/document/5650500/">Incremental learning of subtasks from unsegmented demonstration</a><br/>
-			  
-                        </td>
-                        <td></td>
-                        <td></td>
-                        
-                    </tr>
-	            
-	            
-	            <tr>
-                        <td>7</td>
-                        <td>Feb 22</td>
-                        <td>
-                          <b>Reading Week</b><br/>
-                          
-                        </td>
-                        <td></td>
-                        <td></td>
-                        
-                    </tr>
-	             
-                    
-                    <tr>
-                        <td>8</td>
-                        <td>Mar 1</td>
-                        <td>
+
                           <b>Inverse Reinforcement Learning #1</b><br>
 			  <a href="https://www.aaai.org/Papers/AAAI/2008/AAAI08-227.pdf">Maximum entropy inverse reinforcement learning</a><br/>
-			  <a href="https://arxiv.org/abs/1603.00448">Guided Cost Learning: Deep inverse optimal control via policy optimization</a><br/>
-			  <a href="https://arxiv.org/abs/1507.04888">Maximum entropy deep inverse reinforcement learning</a><br/>
-			  <a href="https://dl.acm.org/citation.cfm?id=1143936">Maximum margin planning</a><br/>
+                          <a href="http://rss2017.lids.mit.edu/program/papers/04/">Active preference-based learning of reward functions</a><br/>
+                          <a href="https://arxiv.org/abs/1507.04888">Maximum entropy deep inverse reinforcement learning</a><br/>
+			  <a href="https://pf.is.mpg.de/publications/doerr-rss-15">Direct loss minimization inverse optimal control</a><br/>
 			  
 			  <br/> 
 			  <b>Optional Reading: Applications of IRL</b><br/>
@@ -350,33 +314,13 @@
                         <td></td>
                         
                     </tr>
-   
-                    <tr>
-                        <td>9</td>
-                        <td>Mar 8</td>
-                        <td>
-                          <b>Inverse Reinforcement Learning #2</b><br>
-			  <a href="http://rss2017.lids.mit.edu/program/papers/04/">Active preference-based learning of reward functions</a><br/>
-			  <a href="http://journals.sagepub.com/doi/abs/10.1177/0278364917745980">Inverse KKT: Learning cost functions of manipulation tasks from demonstrations</a><br/>
-			  <a href="https://www.aaai.org/Papers/IJCAI/2007/IJCAI07-416.pdf">Bayesian inverse reinforcement learning</a><br/>
-			  <a href="https://pf.is.mpg.de/publications/doerr-rss-15">Direct loss minimization inverse optimal control</a><br/>
-			  
-			  <br/> 
-			  <b>Optional Reading</b><br/>
-			  <a href="https://arxiv.org/abs/1711.02827">Inverse reward design</a><br/>
-			  <a href="https://papers.nips.cc/paper/4420-nonlinear-inverse-reinforcement-learning-with-gaussian-processes">Nonlinear inverse reinforcement learning with gaussian processes</a><br/>
-			  <a href="https://papers.nips.cc/paper/6800-compatible-reward-inverse-reinforcement-learning.pdf">Compatible reward inverse reinforcement learning</a><br/>
-			  <a href="https://arxiv.org/abs/1512.05832">Learning the preferences of ignorant, inconsistent agents</a><br/>
-			  
-                        </td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-     
+	            
+	            
 	            <tr>
-                        <td>10</td>
-                        <td>Mar 15</td>
+                        <td>7</td>
+                        <td>Feb 22</td>
                         <td>
+                          
                           <b>Shared Autonomy for Robot Control with Human in-the-Loop</b><br>
 			  <a href="http://bair.berkeley.edu/blog/2018/04/18/shared-autonomy/">Shared autonomy via deep reinforcement learning</a><br/>
 			  <a href="http://www.cim.mcgill.ca/~mrl/pubs/anqixu/icius2014_apexcommander.pdf">Interactive autonomous driving through adaptation from participation</a><br/>
@@ -393,6 +337,81 @@
                           <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/rob.21681">Director: A user interface designed for robot operation with shared autonomy</a><br/>
                           <a href="http://www.roboticsproceedings.org/rss14/p43.html">RelaxedIK: Real-time synthesis of accurate and feasible robot arm motion</a><br/>
         
+                        </td>
+                        <td></td>
+                        <td></td>
+                        
+                    </tr>
+	             
+                    
+                    <tr>
+                        <td>8</td>
+                        <td>Mar 1</td>
+                        <td>
+
+                          <b>Adversarial Imitation Learning</b><br>
+			  <a href="https://arxiv.org/abs/1606.03476">GAIL: Generative adversarial imitation learning</a><br/>
+			  <a href="https://arxiv.org/abs/1612.02179">Model-based adversarial imitation learning</a><br/>
+			  <a href="https://arxiv.org/abs/1703.08840">InfoGAIL: interpretable imitation learning from visual demonstrations</a><br/>
+			  <a href="https://arxiv.org/abs/1605.08478">Model-free imitation learning with policy optimization</a><br/>
+			  
+                       
+                        </td>
+                        <td></td>
+                        <td></td>
+                        
+                    </tr>
+   
+                    <tr>
+                        <td>9</td>
+                        <td>Mar 8</td>
+                        <td>
+
+                          <b>Imitation Learning Combined with Reinforcement Learning, Control, and Planning #2</b><br>
+                          <a href="https://people.eecs.berkeley.edu/~svlevine/papers/mfcgps.pdf">Learning neural network policies with guided policy search under unknown dynamics</a><br/>
+                          <a href="https://arxiv.org/abs/1603.00622">PLATO: Policy learning using adaptive trajectory optimization</a><br/>
+                          <a href="https://arxiv.org/abs/1709.10087">Learning complex dexterous manipulation with deep reinforcement learning and demonstrations</a><br/>
+			  <a href="https://link.springer.com/article/10.1007/s10514-017-9648-7">Using probabilistic movement primitives in robotics</a><br/>
+
+			  
+			  <br/> 
+			  <b>Optional Reading</b><br/>
+                          <a href="https://ieeexplore.ieee.org/document/6630832/">Model-based imitation learning by probabilistic trajectory matching</a><br/>
+			  <a href="https://arxiv.org/abs/1804.02717">DeepMimic: Example-guided deep reinforcement learning of physics-based character skills</a><br/>
+                          <a href="https://ropemanipulation.github.io/">Combining self-supervised learning and imitation for vision-based rope manipulation</a><br/>
+                          <a href="https://arxiv.org/abs/1802.05313">Reinforcement learning from imperfect demonstrations</a><br/>
+                          <a href="http://ml.informatik.uni-freiburg.de/former/_media/publications/gr_09.pdf">(Batch) reinforcement learning for robot soccer</a><br/>
+                          
+			  <br/> 
+			  <b>Optional Reading: Imitation Can Improve Exploration</b><br/>
+			  <a href="https://arxiv.org/abs/1709.10089">Overcoming exploration in reinforcement learning with demonstrations</a><br/>
+			  <a href="https://arxiv.org/abs/1611.04180">Learning to gather information via imitation</a><br/>
+			  <a href="https://dl.acm.org/citation.cfm?id=2936990">Exploration from demonstration for interactive reinforcement learning</a><br/><br/>
+			  
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+     
+	            <tr>
+                        <td>10</td>
+                        <td>Mar 15</td>
+                        <td>
+                          
+                          <b>Inverse Reinforcement Learning #2</b><br>
+			  <a href="https://arxiv.org/abs/1603.00448">Guided Cost Learning: Deep inverse optimal control via policy optimization</a><br/>
+			  <a href="http://journals.sagepub.com/doi/abs/10.1177/0278364917745980">Inverse KKT: Learning cost functions of manipulation tasks from demonstrations</a><br/>
+			  <a href="https://www.aaai.org/Papers/IJCAI/2007/IJCAI07-416.pdf">Bayesian inverse reinforcement learning</a><br/>
+			  <a href="https://dl.acm.org/citation.cfm?id=1143936">Maximum margin planning</a><br/>
+			  
+			  <br/> 
+			  <b>Optional Reading</b><br/>
+			  <a href="https://arxiv.org/abs/1711.02827">Inverse reward design</a><br/>
+			  <a href="https://papers.nips.cc/paper/4420-nonlinear-inverse-reinforcement-learning-with-gaussian-processes">Nonlinear inverse reinforcement learning with gaussian processes</a><br/>
+			  <a href="https://papers.nips.cc/paper/6800-compatible-reward-inverse-reinforcement-learning.pdf">Compatible reward inverse reinforcement learning</a><br/>
+			  <a href="https://arxiv.org/abs/1512.05832">Learning the preferences of ignorant, inconsistent agents</a><br/>
+			  <a href="https://ieeexplore.ieee.org/abstract/document/6045410">Imputing a convex objective function</a><br/>
+                          <a href="https://arxiv.org/abs/1710.11248">Learning robust rewards with adversarial inverse reinforcement learning</a><br/>
                           
                         </td>
                         <td></td>
@@ -405,12 +424,13 @@
                         <td>11</td>
                         <td>Mar 22</td>
                         <td>
-                          <b>Adversarial Imitation Learning</b><br>
-			  <a href="https://arxiv.org/abs/1606.03476">GAIL: Generative adversarial imitation learning</a><br/>
-			  <a href="https://arxiv.org/abs/1612.02179">Model-based adversarial imitation learning</a><br/>
-			  <a href="https://arxiv.org/abs/1703.08840">InfoGAIL: interpretable imitation learning from visual demonstrations</a><br/>
-			  <a href="https://arxiv.org/abs/1605.08478">Model-free imitation learning with policy optimization</a><br/>
-			  
+                          <b>Rewards & Value Alignment</b><br>
+                          <a href="https://arxiv.org/abs/1801.09624">Learning the reward function for a misspecified model</a><br/>
+                          <a href="https://people.eecs.berkeley.edu/~pabbeel/cs287-fa09/readings/NgHaradaRussell-shaping-ICML1999.pdf">Policy invariance under reward transformations: theory and applications to reward shaping</a><br/>
+                          <a href="https://arxiv.org/abs/1811.07871">Scalable agent alignment via reward modeling: a research direction</a><br/>
+                          <a href="https://arxiv.org/abs/1606.06565">Concrete problems in AI safety</a><br/>
+                          <a href="https://arxiv.org/abs/1606.03137">Cooperative inverse reinforcement learning</a><br/>
+                          
                         </td>
                         <td></td>
                         <td></td>
