@@ -5,7 +5,7 @@
 <!--meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1"-->
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<title>CSC2621HS, UofT</title>
+<title>CSC2626HS, UofT</title>
 
 <!-- Bootstrap -->
 <link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -20,7 +20,7 @@
 
 <div class="container theme-showcase" role="main">
     <div class="page-header">
-        <h1>Imitation Learning for Robotics, Winter 2019, CSC2621</h1>
+        <h1>CSC2626: Imitation Learning for Robotics, Winter 2021</h1>
     </div>
 
     <!--div class="imgs">
@@ -42,39 +42,51 @@
 	effectively interact with robotic technologies on a daily basis. As such, people will need to modify the behavior of their robots without
 	explicitly writing code, but by providing only a small number of kinesthetic or visual demonstrations. At the same time, robots should try to
 	infer and predict the human's intentions and internal objectives from past interactions, in order to provide assistance before it is explicitly asked.
-	This <b>graduate-level seminar course</b> will examine some of the most important papers in imitation learning for robot control, placing more emphasis on developments
+	This <b>graduate-level course</b> will examine some of the most important papers in imitation learning for robot control, placing more emphasis on developments
 	in the last 10 years. Its purpose is to familiarize students with the frontiers of this research area, to help them identify open problems, and
 	to enable them to make a novel contribution.        
 
 	<h3>Prerequisites</h3>
-	You need to be comfortable with: introductory machine learning concepts (such as from CSC411/ECE521 or equivalent), linear algebra, basic multivariable
+	You need to be comfortable with: introductory machine learning concepts (such as from CSC411/CSC413/ECE521 or equivalent), linear algebra, basic multivariable
 	calculus, intro to probability. You also need to have strong programming skills in Python. <b>Note:</b> if you don't meet all the prerequisites above
 	please contact the instructor by email. Optional, but recommended: experience with neural networks, such as from CSC321, introductory-level familiarity
 	with reinforcement learning and control.
-
-	<h3>Announcements</h3>
-	<div><b>Dec 10, 2018</b>: The course is now available for registration on <a href="https://www.acorn.utoronto.ca/">ROSI/ACORN</a>. We will be using the discussion board and the announcements section on <a href="http://toolboxrenewal.utoronto.ca/">Quercus</a>.</div>
 	
       </div>
 
       <h3>Teaching Staff</h3>
       <div id="dts">
-        <div class="ts">
+
+	<div class="ts">
           <div>Instructor</div>
           <div><a href="http://www.cs.toronto.edu/~florian">Florian Shkurti</a></div>
           <div>x@cs.toronto.edu, x=florian</div>
-	  <div>Office Hours: Tue 4-6pm, <a href="https://goo.gl/maps/nHCAkpWCcV72">PT283E</a></div>
-	</div>  
+	  <div>Office Hours: Wed 2-3pm ET, on Zoom</div>
+	</div>
+
+	<div class="ts">
+          <div>Teaching Assistant</div>
+          <div><a href="http://www.cs.toronto.edu/~homanga">Homanga Bharadhwaj</a></div>
+          <div>y@cs.toronto.edu, y=homanga</div>
+	  <div>Office Hours: Fri 2-3pm ET, on Zoom</div>
+	</div>
+
+	
       </div>
 
       <div class="host">
       </div>
 
-      <h3>Time and Location</h3>
+      <h3>Course Details</h3>
       <div id="dts">
         <div class="ts">
-          <div>When: Fridays, 1-3pm</div>
-	  <div>Lecture room: AB 107, St. George Campus</div>
+          <div>Lectures: Mondays, 3-5pm ET (online synchronous delivery + recorded lectures)</div>
+	  <div>Zoom link is posted on the course's Quercus homepage</div>
+	  <div>All announcements will be posted on Quercus</div>
+	  <div>Discussions will take place on <a href="http://www.piazza.com/utoronto.ca/winter2021/csc2626">Piazza</a></div>
+	  <div><a href="https://www.surveymonkey.com/r/LJJV5LY">Anonymous feedback form</a> for suggested improvements</div>
+	  
+	  
 	</div>  
       </div>
       
@@ -86,32 +98,25 @@
 
         <h3>Grading and Important Dates</h3>
 	<ul>
-          <li><b>Presentations</b> (20%): Each student enrolled in the class will present at least one paper and they will be graded based on the clarity of the
-	    presentation, the depth of their understanding of the material, and how well they address questions from the audience. Students who are scheduled to present on a given week will give a practice presentation to the instructor on Monday that week at 5:30-7pm at PT283E, to ensure presentations of high quality.</li>
+          
+	  <li><b>Assignment 1</b> (25%): due Jan 27, at 6pm ET</li>
+	  
+	  <li><b>Assignment 2</b> (25%): due Feb 12, at 6pm ET</li>
 
 	  
-	  <!--li><b>Paper Reviews</b> (10%): Every week, each student enrolled in the class will submit a paper review, by email, on Thursday by 6pm.
-	    The review will cover any one of the papers presented during lecture on Friday. Students are not required to submit a paper
-	    review during the week that they present. Paper reviews should not exceed 1 page and
-	    they should follow <a href="paper_review_structure.txt">this structure</a>.
-	  </li-->
-
-	  <li><b>Assignment</b> (20%): The assignment is now posted <a href="assignments/A1/tex/A1.pdf">here</a></li>
-	  
-	  <li><b>Project Proposal</b> (10%): Due Feb 11 at 6pm. Students can take on projects in groups of 2-3 people.
-	    Tips for a good project proposal can be found <a href="assignments/Project/project_guidelines.pdf">here</a>. Proposals should not be based only on papers covered in class by Feb 11th.
+	  <li><b>Project Proposal</b> (10%): Due Feb 17 at 6pm. Students can take on projects in groups of 2-3 people.
+	    Tips for a good project proposal can be found <a href="./CSC2626_Project_Guidelines.pdf">here</a>. Proposals should not be based only on papers covered in class by Feb 17th.
 	    Students are encouraged to look further ahead in the schedule and to start planning their project definition well ahead of this deadline.
-	    Students who need help choosing or crystallizing a project idea should email the instructor. Project proposals that involve the use of real
-	    robot hardware should clearly indicate so, to allow sufficient time for the instructor to arrange this.
+	    Students who need help choosing or crystallizing a project idea should email the instructor or the TA. 
 	  </li>
 	  
-	  <li><b>Midterm Progress Report</b> (10%): Due Mar 1 at 6pm. Tips and expectations for a good midterm progress report are <a href="assignments/Project/project_guidelines.pdf">here</a>.
+	  <li><b>Midterm Progress Report</b> (5%): Due Mar 10 at 6pm ET. Tips and expectations for a good midterm progress report are <a href="./CSC2626_Project_Guidelines.pdf">here</a>.
 	  </li>
 
-	  <li><b>Project Presentation</b> (10%): Due Mar 29 or Apr 5. This will be a short presentation, approximately 5-10 minutes, depending on the number of groups.
+	  <li><b>Project Presentation</b> (5%): On Apr 5, during class. This will be a short presentation, approximately 5-10 minutes, depending on the number of groups.
           </li>
 	  
-	  <li><b>Project Report and Code</b> (30%): Due Apr 10. Tips and expectations for a good final project report can be found <a href="assignments/Project/project_guidelines.pdf">here</a>.</li>
+	  <li><b>Final Project Report and Code</b> (30%): Due Apr 12 at 6pm ET. Tips and expectations for a good final project report can be found <a href="./CSC2626_Project_Guidelines.pdf">here</a>.</li>
 	</ul>  
 	
 	
@@ -137,7 +142,7 @@
                         <th>Lecture</th>
                         <th>Date</th>
                         <th>Topics</th>
-                        <th>Presenters</th>
+                        <th></th>
                         <th>Slides</th>
                     </tr>
                 </thead>
@@ -169,8 +174,8 @@
 			  
 			  
 			</td>
-                        <td>Florian</td>
-                        <td><a href="Quiz_0.pdf">Quiz 0</a><br/><a href="Syllabus_CSC2621w19.pdf">Syllabus</a><br/><a href="./lectures/Lecture1.pdf">Slides</a></td>
+                        <td></td>
+                        <td><a href="Quiz_0.pdf">Quiz 0</a><br/><a href="CSC2626_Syllabus.pdf">Syllabus</a><br/><a href="./lectures/Lecture1.pdf">Slides</a></td>
                     </tr>
 
 
@@ -201,7 +206,7 @@
                           <a href="https://arxiv.org/abs/1807.03858">Algorithmic framework for model-based deep reinforcement learning with theoretical guarantees</a><br/>
                           
                         </td>
-                        <td>Florian</td>
+                        <td></td>
                         <td><a href="./lectures/Lecture2.pdf">Slides</a></td>
                         
                     </tr>
@@ -227,7 +232,7 @@
 			    <a href="https://arxiv.org/abs/1505.05424">Weight uncertainty in neural networks</a><br/>
 			    
                         </td>
-                        <td>Ruthrash<br/>Chris<br/>Rohan<br/>Huan</td>
+                        <td></td>
                         <td><a href="./lectures/SHIV.pdf">Slides</a></td>
                         
                     </tr>
@@ -253,7 +258,7 @@
 			  
 			  
                         </td>
-                        <td>David<br/>Brenna<br/>Bryan<br/>Wei<br/>Renato<br/>Paul</td>
+                        <td></td>
                         <td><a href="./lectures/Lecture4.pdf">Slides</a></td>
                         
                     </tr>
@@ -288,7 +293,7 @@
                           <a href="https://ieeexplore.ieee.org/document/6943187">Learning to sequence movement primitives from demonstrations</a><br/>
                           
 			</td>
-                        <td>Zihang<br/>Ilan<br/>Angran<br/>Zeqi<br/></td>
+                        <td></td>
                         <td><a href="./lectures/Lecture5.pdf">Slides</a></td>
                         
                     </tr>
@@ -314,7 +319,7 @@
 			  <a href="http://www.cs.cmu.edu/~kkitani/pdf/KZBH-ECCV12.pdf">Activity forecasting</a><br/>
 			  
                         </td>
-                        <td>Sergio<br/>Jacky<br/>Sean<br/>Siva<br/></td>
+                        <td></td>
                         <td><a href="./lectures/Lecture6.pptx">Slides</a></td>
                         
                     </tr>
@@ -342,7 +347,7 @@
                           <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/rob.21681">Director: A user interface designed for robot operation with shared autonomy</a><br/>
                           
                         </td>
-                        <td>Andrei<br/>Nnorom<br/>Bin<br/>Tingwu<br/></td>
+                        <td></td>
                         <td><a href="./lectures/Lecture7.zip">Slides</a></td>
                         
                     </tr>
@@ -361,7 +366,7 @@
 			  
                        
                         </td>
-                        <td>Yeming<br/>Yuwen<br/>Yin-Hung<br/>Jun<br/></td>
+                        <td></td>
                         <td><a href="./lectures/Lecture8.zip">Slides</a></td>
                         
                     </tr>
@@ -393,7 +398,7 @@
 			  <a href="https://dl.acm.org/citation.cfm?id=2936990">Exploration from demonstration for interactive reinforcement learning</a><br/><br/>
 			  
                         </td>
-                        <td>Yuwei<br/>Jienan<br/>Jason<br/></td>
+                        <td></td>
                         <td><a href="./lectures/Lecture9.zip">Slides</a></td>
                     </tr>
      
@@ -418,7 +423,7 @@
                           <a href="https://arxiv.org/abs/1710.11248">Learning robust rewards with adversarial inverse reinforcement learning</a><br/>
                           
                         </td>
-                        <td>Florian</td>
+                        <td></td>
                         <td><a href="./lectures/Lecture10.pdf">Slides</a></td>
                         
                     </tr>
@@ -436,7 +441,7 @@
                           <a href="https://arxiv.org/abs/1606.03137">Cooperative inverse reinforcement learning</a><br/>
                           
                         </td>
-                        <td>Florian</td>
+                        <td></td>
                         <td></td>
                         
                     </tr>
