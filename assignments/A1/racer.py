@@ -2,6 +2,7 @@ import gym
 from full_state_car_racing_env import FullStateCarRacingEnv
 import scipy
 import scipy.misc
+import imageio
 import numpy as np
 import argparse
 import torch
@@ -38,7 +39,7 @@ def run(steering_network, args):
         learner_action[2] = expert_brake
 
         if args.save_expert_actions:
-            scipy.misc.imsave(os.path.join(args.out_dir, 'expert_%d_%d_%f.jpg' % (args.run_id, t, expert_steer)), state)
+            imageio.imwrite(os.path.join(args.out_dir, 'expert_%d_%d_%f.jpg' % (args.run_id, t, expert_steer)), state)
 
     env.close()
 
