@@ -1,0 +1,7 @@
+gym==0.21.0
+mujoco_py
+pyquaternion
+nlopt
+scipy
+torch
+matplotlib

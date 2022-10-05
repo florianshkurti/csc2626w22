@@ -1,0 +1,315 @@
+<?xml version="1.0" ?>
+<mujoco model="ur10-ridgeback-cup">
+    <compiler angle="radian"
+              inertiafromgeom="true"
+              texturedir="textures/"
+              eulerseq = "XYZ"
+              meshdir="meshes"/>
+    <option timestep="2e-3"
+            iterations="10"
+            tolerance="1e-10"
+            impratio="20"/>
+    <size njmax="600" nconmax="150" nstack="300000"/>
+
+    <option gravity="0 0 0"></option>
+    <option viscosity="0"></option>
+
+    <default>
+        <site rgba="0.8 0.6 0.7 0.3" type="ellipsoid" group="3"/>
+        <geom contype='1' conaffinity='1' condim='4'  margin="1e-3" solref=".01 1" solimp=".99 .99 .01" />
+        <joint armature="0.01" damping=".1"/>
+        <default class="UR10"> <!-- need to determine the optimal damping value -->
+            <joint damping='65'/>
+        </default>
+        <default class="UR10e"> 
+            <joint damping='45'/>
+        </default>
+        <default class="GRIPPER">
+            <joint damping='5'/>
+        </default>
+    </default>
+
+    <visual>
+        <map fogstart="3" fogend="5" znear="0.05"/>
+        <quality shadowsize="2048"/>
+        <scale framelength="0.1"
+               framewidth="0.005"
+               contactwidth="0.1"
+               contactheight="0.005"
+               forcewidth="0.01"
+               />
+    </visual>
+
+    <asset>
+
+        <!--Meshes-->
+        <mesh file="ridgeback/tor11_mech.stl" name="tor11_mech"/>
+        <mesh file="ridgeback/body.stl" name="rb_body"/>
+        <mesh file="ridgeback/end-cover.stl" name="end-cover"/>
+        <mesh file="ridgeback/axle.stl" name="axle"/>
+        <mesh file="ridgeback/rocker.stl" name="rocker"/>
+        <mesh file="ridgeback/wheel.stl" name="wheel"/>
+        <mesh file="ridgeback/top.stl" name="top"/>
+        <mesh file="ridgeback/ur_sensor_vicon_mount_tonge_holes.stl" name="ur_sensor_vicon_mount_tonge_holes" scale="0.001 0.001 0.001"/>
+
+        <mesh file="gripper/palm.STL" name="palm"/>
+        <mesh file="gripper/link_0.STL" name="link_0"/>
+        <mesh file="gripper/link_1.STL" name="link_1"/>
+        <mesh file="gripper/link_2.STL" name="link_2"/>
+        <mesh file="gripper/link_3.STL" name="link_3"/>
+
+        <mesh file="ur10/base.stl" name="base"/>
+        <mesh file="ur10/shoulder.stl" name="shoulder"/>
+        <mesh file="ur10/upperarm.stl" name="upperarm"/>
+        <mesh file="ur10/forearm.stl" name="forearm"/>
+        <mesh file="ur10/wrist1.stl" name="wrist1"/>
+        <mesh file="ur10/wrist2.stl" name="wrist2"/>
+        <mesh file="ur10/wrist3.stl" name="wrist3"/>
+
+        <mesh file="cup/cupCylinder_hull_1.stl" name="cup_hull_1" refpos="0 0 0" refquat="0.5 0.5 0.5 0.5"/>
+        <mesh file="cup/cupCylinder_hull_2.stl" name="cup_hull_2" refpos="0 0 0" refquat="0.5 0.5 0.5 0.5"/>
+        <mesh file="cup/cupCylinder_hull_3.stl" name="cup_hull_3" refpos="0 0 0" refquat="0.5 0.5 0.5 0.5"/>
+        <mesh file="cup/cupCylinder_hull_4.stl" name="cup_hull_4" refpos="0 0 0" refquat="0.5 0.5 0.5 0.5"/>
+        <mesh file="cup/cupCylinder_hull_5.stl" name="cup_hull_5" refpos="0 0 0" refquat="0.5 0.5 0.5 0.5"/>
+        <mesh file="cup/cupCylinder_hull_6.stl" name="cup_hull_6" refpos="0 0 0" refquat="0.5 0.5 0.5 0.5"/>
+        <mesh file="cup/cupCylinder_hull_7.stl" name="cup_hull_7" refpos="0 0 0" refquat="0.5 0.5 0.5 0.5"/>
+        <mesh file="cup/cupCylinder_hull_8.stl" name="cup_hull_8" refpos="0 0 0" refquat="0.5 0.5 0.5 0.5"/>
+        <mesh file="cup/cupCylinder_hull_9.stl" name="cup_hull_9" refpos="0 0 0" refquat="0.5 0.5 0.5 0.5"/>
+        <mesh file="cup/cupCylinder_hull_10.stl" name="cup_hull_10" refpos="0 0 0" refquat="0.5 0.5 0.5 0.5"/>
+        <mesh file="cup/cupCylinder_hull_11.stl" name="cup_hull_11" refpos="0 0 0" refquat="0.5 0.5 0.5 0.5"/>
+        <mesh file="cup/cupCylinder_hull_12.stl" name="cup_hull_12" refpos="0 0 0" refquat="0.5 0.5 0.5 0.5"/>
+        <mesh file="cup/cupCylinder_hull_13.stl" name="cup_hull_13" refpos="0 0 0" refquat="0.5 0.5 0.5 0.5"/>
+        <mesh file="cup/cupCylinder_hull_14.stl" name="cup_hull_14" refpos="0 0 0" refquat="0.5 0.5 0.5 0.5"/>
+        <mesh file="cup/cupCylinder_hull_15.stl" name="cup_hull_15" refpos="0 0 0" refquat="0.5 0.5 0.5 0.5"/>
+        <mesh file="cup/cupCylinder_hull_16.stl" name="cup_hull_16" refpos="0 0 0" refquat="0.5 0.5 0.5 0.5"/>
+        <mesh file="cup/cupCylinder_hull_17.stl" name="cup_hull_17" refpos="0 0 0" refquat="0.5 0.5 0.5 0.5"/>
+        <mesh file="cup/cupCylinder_hull_18.stl" name="cup_hull_18" refpos="0 0 0" refquat="0.5 0.5 0.5 0.5"/>
+        <mesh file="cup/cupCylinder_hull_19.stl" name="cup_hull_19" refpos="0 0 0" refquat="0.5 0.5 0.5 0.5"/>
+
+         <!--Textures-->
+        <texture name="ur10_tex"     type="2d"       builtin="flat" height="32" width="32" rgb1="0.7 0.7 0.7" />
+        <texture name="gripper_tex" type="2d"       builtin="flat" height="32" width="32" rgb1="0.45 0.45 0.45" rgb2="0 0 0"/>
+        <texture name="bench_tex"   type="2d"       builtin="flat" height="32" width="32" rgb1="0.7 0.7 0.7" />
+        <texture name="sky_tex"     type="skybox"   builtin="gradient" width="100" height="100" rgb1="1 1 1" rgb2="0.3 0.3 0.8" />
+        <texture name="texgeom"     type="cube"     builtin="flat" mark="cross" width="127" height="1278" rgb1="0.8 0.6 0.4" rgb2="0.8 0.6 0.4" markrgb="1 1 1" random="0.01" />
+        <texture name="floor_tex"   type="2d"        builtin="checker" rgb1=".2 .3 .4" rgb2=".1 .2 .3" width="100" height="100" />
+        <texture name="wood"        type="cube"     file="wood2.png"/>
+        <texture name="metal"        type="cube"     file="metal2.png"/>
+        <!--Materials-->
+        <material name="ur10_mat"        texture="ur10_tex"   shininess="0.9" specular="0.75" reflectance="0.3"/>
+        <material name="gripper_mat"    texture="gripper_tex"   shininess="0.9" specular="0.75" reflectance="0.4"/>
+        <material name='floor_mat'      texture="floor_tex"  shininess="0.8" texrepeat="10 10" specular="0.7"  reflectance="0.5" />
+        <material name='geom'           texture="texgeom"   texuniform="true" />
+        <material name="ridgeback_mat"      texture="metal"   shininess="0.1" specular="0.5" reflectance="0.2"/>
+        <material name="tablecube"      texture="wood" rgba=".8 .8 .8 1"/>
+        <material name="invis"        texture="ur10_tex"   shininess="0.9" specular="0.75" reflectance="0.3" rgba=".8 .8 .8 0.1"/>
+    </asset>
+
+    <!--Contacts-->
+    <contact>
+        <exclude body1="arch_link" body2="ur10_arm_base_link"/>
+        <exclude body1="arch_link" body2="ur10_arm_shoulder_link"/>
+        <exclude body1="arch_link" body2="ur10_arm_upper_arm_link"/>
+        <exclude body1="arch_link" body2="ur10_arm_forearm_link"/>
+        <exclude body1="arch_link" body2="ur10_arm_wrist_1_link"/>
+        <exclude body1="arch_link" body2="ur10_arm_wrist_2_link"/>
+        <exclude body1="arch_link" body2="ur10_arm_wrist_3_link"/>
+        <exclude body1="arch_link" body2="ur10_arm_tool0"/>
+        <exclude body1="arch_link" body2="thing_tool"/>
+        <exclude body1="arch_link" body2="ur10_arm_ee_link"/>
+        <exclude body1="arch_link" body2="cup"/>
+
+		<exclude body1="ur10_arm_base_link" body2="ur10_arm_shoulder_link"/>
+		<exclude body1="ur10_arm_shoulder_link" body2="ur10_arm_upper_arm_link"/>
+        <exclude body1="ur10_arm_upper_arm_link" body2="ur10_arm_forearm_link"/>
+		<exclude body1="ur10_arm_forearm_link" body2="ur10_arm_wrist_1_link"/>
+		<exclude body1="ur10_arm_wrist_1_link" body2="ur10_arm_wrist_2_link"/>
+        <exclude body1="ur10_arm_wrist_2_link" body2="ur10_arm_wrist_3_link"/>
+        <exclude body1="ur10_arm_ee_link" body2="ur10_arm_wrist_3_link"/>
+
+        <!--for cup-->
+        <exclude body1="ur10_arm_forearm_link" body2="cup"/>
+        <exclude body1="ur10_arm_wrist_1_link" body2="cup"/>
+        <exclude body1="ur10_arm_wrist_2_link" body2="cup"/>
+        <exclude body1="ur10_arm_wrist_3_link" body2="cup"/>
+        <exclude body1="ur10_arm_ee_link" body2="cup"/>
+
+        <!-- for certain angles of ee -->
+        <exclude body1="ur10_arm_forearm_link" body2="ur10_arm_wrist_2_link"/>
+
+    </contact>
+
+    <worldbody>
+         <!--Lighting parameters-->
+        <light name="light3" directional="true" pos="1 1 3" />
+
+        <geom name='floor' material="floor_mat" pos='0 0 -0.0771' size='4 4 0.1'  type='plane' />
+
+        <body name="ball" pos="0 0 0">
+          <joint name="ball_x" type="slide" axis="1 0 0" armature="0" damping="0" limited = "true" range = "-4 4"/>
+          <joint name="ball_y" type="slide" axis="0 1 0" armature="0" damping="0" limited = "true" range = "-4 4"/>
+          <joint name="ball_z" type="slide" axis="0 0 1" armature="0" damping="0" limited = "true" range = "-4 4"/>
+          <geom name="ball" type="sphere" size=".025" mass="0.25"/>
+          <site name="ball" size=".05"/>
+        </body>
+
+        <!-- the body transformation should be the same to joint property in the URDF file-->
+        <body name = "chassis_link" pos = '0 0 0' >
+            <!--used to have ridgeback_x and y damping=10, removing it bugs out functionality of shoulder joint for some reason-->
+            <joint axis="1 0 0" name="ridgeback_x" pos="0 0 0" type="slide" damping = "2000" frictionloss="10" limited = "true" range = "-4 4"/>
+            <joint axis="0 1 0" name="ridgeback_y" pos="0 0 0" type="slide" damping = "2000" frictionloss="10" limited = "true" range = "-4 4"/>
+            <!-- not using the ridgeback's rotation in sim and reality -->
+            <!--joint axis="0 0 1" name="ridgeback_theta" pos="0 0 0" type="hinge" range = "-3.141592654 3.141592654"/-->
+            <inertial pos="0.012 0.002 0.067" mass="128" diaginertia="3.2 3.2 4.0" />
+            <geom type="mesh"  euler = "1.57079632679 0 1.57079632679" mesh="rb_body" material="ridgeback_mat"/>
+            <body name = "front_cover_link" pos = '0 0 0'>
+                <geom type="mesh" euler = "1.57079632679 0 -1.57079632679 "  mesh="end-cover" material="ridgeback_mat"/>
+            </body>
+            <body name = "rear_cover_link" pos = '0 0 0'>
+                <geom type="mesh" euler = "1.57079632679 0 1.57079632679"  mesh="end-cover" material="ridgeback_mat"/>
+            </body>
+            <body name = "axle_link"  pos = '0 0 0'>
+                <geom type="mesh" euler = "0 1.57079632679 0 " mesh="axle" material="ridgeback_mat"/>
+            </body>
+            <body name = "front_rocker_link" pos = '0.319 0 0'>
+                <geom type="mesh" euler = "1.57079632679 0 1.57079632679" mesh="rocker" material="ridgeback_mat"/>
+                <inertial pos="0 0 0" mass="3" diaginertia="0.001 0.001 0.001" />
+<!--                <body name="front_left_wheel_link" pos = "0 0.2755 0">-->
+<!--                    <joint axis="0 1 0" name="front_left_wheel" pos="0 0 0" damping = "0"/>-->
+<!--                    <geom type="mesh"  euler = "1.57079632679 0 0" mesh="wheel" material="ridgeback_mat"/>-->
+<!--                    <inertial pos="0 0 0" mass="0.477" diaginertia="0.0013 0.0024 0.0013" />-->
+<!--                </body>-->
+<!--                <body name="front_right_wheel_link" pos = "0 -0.2755 0">-->
+<!--                    <joint axis="0 1 0" name="front_right_wheel" pos="0 0 0" damping = "0"/>-->
+<!--                    <geom type="mesh"  euler = "1.57079632679 0 0" mesh="wheel" material="ridgeback_mat"/>-->
+<!--                    <inertial pos="0 0 0" mass="0.477" diaginertia="0.0013 0.0024 0.0013" />-->
+<!--                </body>-->
+            </body>
+            <body name = "rear_rocker_link" pos = '-0.319 0 0'>
+                <geom type="mesh" euler = "1.57079632679 0 1.57079632679" mesh="rocker" material="ridgeback_mat"/>
+                <inertial pos="0 0 0" mass="3" diaginertia="0.001 0.001 0.001" />
+<!--                <body name="rear_left_wheel_link" pos = "0 0.2755 0">-->
+<!--                    <joint axis="0 1 0" name="rear_left_wheel" pos="0 0 0" damping = "0"/>-->
+<!--                    <geom type="mesh"  euler = "1.57079632679 0 0" mesh="wheel" material="ridgeback_mat"/>-->
+<!--                    <inertial pos="0 0 0" mass="0.477" diaginertia="0.0013 0.0024 0.0013" />-->
+<!--                </body>-->
+<!--                <body name="rear_right_wheel_link" pos = "0 -0.2755 0">-->
+<!--                    <joint axis="0 1 0" name="rear_right_wheel" pos="0 0 0" damping = "0"/>-->
+<!--                    <geom type="mesh"  euler = "1.57079632679 0 0" mesh="wheel" material="ridgeback_mat"/>-->
+<!--                    <inertial pos="0 0 0" mass="0.477" diaginertia="0.0013 0.0024 0.0013" />-->
+<!--                </body>-->
+            </body>
+            <body name = "top_link" pos = '0 0 0' >
+                <camera name="kinect" pos="-1.5 0 1.2" xyaxes="0 -1 0 0 0 1" fovy="90"/>
+                <geom type="mesh" euler = "1.57079632679 0 1.57079632679" pos = "-0.48 -0.3965 0" mesh="top" material="ridgeback_mat"/>
+                <body name = "arch_link" pos = "0 0 0.278" euler = "0 0 1.57079632679">
+                    <geom mesh="tor11_mech" type="mesh"/>
+                    <!-- UR10 arm model -->
+                    <body name = "ur10_arm_base_link" euler = "0.0 0.0 1.57079632679" pos = "0.01 -0.27 0.375" >
+                        <!-- the UR10 arm base is not rigidly attached to the arch_link model -->
+                        <geom type="mesh"  mesh="base" material="ur10_mat"/>
+                        <inertial pos="0.0 0.0 0.1273" mass="4.0" diaginertia="0.0061063308908 0.0061063308908 0.01125" />
+                        <body name = "ur10_arm_shoulder_link" pos = "0.0 0.0 0.1273">
+                            <geom type="mesh"  mesh="shoulder" material="ur10_mat"/>
+                            <inertial pos="0 0 0" mass="7.778" diaginertia="0.0314743125769 0.0314743125769 0.021875625" />
+                            <joint axis="0 0 1" name="ur10_arm_0_shoulder_pan_joint" damping = '65' pos="0 0 0" type="hinge" limited = "true" range = "-3.141592654 3.141592654"/> <!--damping ratio?-->
+                            <body name = "ur10_arm_upper_arm_link" pos = "0.0 0.220941 0.0" euler = "0.0 1.570796325 0.0">
+                                <geom type="mesh"  mesh="upperarm" material="ur10_mat"/>
+                                <inertial pos="0.0 0.0 0.306" mass="12.93" diaginertia="0.421753803798 0.421753803798 0.036365625" />
+                                <joint axis="0 1 0" name="ur10_arm_1_shoulder_lift_joint" damping = '65' pos="0 0 0" type="hinge" limited = "true" range = "-3.141592654 3.141592654" />
+                                <body name = "ur10_arm_forearm_link" pos = "0.0 -0.1719 0.612" euler = "0.0 0.0 0.0">
+                                    <geom type="mesh"  mesh="forearm" material="ur10_mat"/>
+                                    <inertial pos="0.0 0.0 0.28615" mass="3.87" diaginertia="0.111069694097 0.111069694097 0.010884375" />
+                                    <joint axis="0 1 0" name="ur10_arm_2_elbow_joint" damping = '65' pos="0 0 0" type="hinge" limited = "true" range = "-3.141592654 3.141592654" />
+                                    <body name = "ur10_arm_wrist_1_link" pos = "0.0 0.0 0.5723" euler = "0.0 1.570796325 0.0">
+                                        <geom type="mesh"  mesh="wrist1" material="ur10_mat"/>
+                                        <inertial pos="0.0 0.0 0.0" mass="1.96" diaginertia="0.0051082479567 0.0051082479567 0.0055125" />
+                                        <joint axis="0 1 0" name="ur10_arm_3_wrist_1_joint" damping = '65' pos="0 0 0" type="hinge" limited = "true" range = "-3.141592654 3.141592654" />
+                                        <body name = "ur10_arm_wrist_2_link" pos = "0.0 0.1149 0.0">
+                                            <geom type="mesh"  mesh="wrist2" material="ur10_mat"/>
+                                            <inertial pos="0.0 0.0 0.0" mass="1.96" diaginertia="0.0051082479567 0.0051082479567 0.0055125" />
+                                            <joint axis="0 0 1" name="ur10_arm_4_wrist_2_joint" damping = '65' pos="0 0 0" type="hinge" limited = "true" range = "-3.141592654 3.141592654"/>
+                                            <body name = "ur10_arm_wrist_3_link" pos = "0.0 0.0 0.1157" euler = "0.0 0.0 0.0">
+                                                <geom type="mesh"  mesh="wrist3" material="ur10_mat"/>
+                                                <inertial pos="0.0 0.0 0.0" mass="0.202" diaginertia="0.000526462289415 0.000526462289415 0.000568125" />
+                                                <joint axis="0 1 0" name="ur10_arm_5_wrist_3_joint" damping = '65' pos="0 0 0" type="hinge" limited = "true" range = "-6.28318530718 6.28318530718"/>
+                                                <!--dummy bodies to represent the Tool Center Point-->
+                                                <body name = "ur10_arm_tool0" pos = "0 0.0922 0" euler = "-1.570796325 0 0">
+                                                    <inertial pos="0.0 0.0 0.0" mass="1e-4" diaginertia="1e-9 1e-9 1e-9"/>
+                                                    <body name = "thing_tool" pos = "0.0 0.0 0.2" euler = "1.5707963 0.0 0.26179939">
+                                                        <!--the z value here must be the same with the value used for forward kinematics-->
+                                                        <inertial pos="0.0 0.0 0.0" mass="1e-4" diaginertia="1e-9 1e-9 1e-9"/>
+                                                    </body>
+                                                </body>
+                                                <body name = "ur10_arm_ee_link" pos = "0.0 0.0922 0.0" euler = "0.0 0.0 1.570796325">
+                                                <!-- pos = "0.0 0.0823 0.0" for the ur5gripper xml file -->
+                                                    <inertial pos="-0.01 0 0" mass="0.001" diaginertia="1.66667e-08 1.66667e-08 1.66667e-08" />
+                                                    <geom size="0.01 0.01 0.01" pos="-0.01 0 0" type="box" />
+
+                                                    <body name="cup" pos="0.1 0 0" euler="0 0.261799387799 -1.57079632679">
+                                                        <geom type="mesh"  mesh="cup_hull_1" material="invis"/>
+                                                        <geom type="mesh"  mesh="cup_hull_2" material="invis"/>
+                                                        <geom type="mesh"  mesh="cup_hull_3" material="invis"/>
+                                                        <geom type="mesh"  mesh="cup_hull_4" material="invis"/>
+                                                        <geom type="mesh"  mesh="cup_hull_5" material="invis"/>
+                                                        <geom type="mesh"  mesh="cup_hull_6" material="invis"/>
+                                                        <geom type="mesh"  mesh="cup_hull_7" material="invis"/>
+                                                        <geom type="mesh"  mesh="cup_hull_8" material="invis"/>
+                                                        <geom type="mesh"  mesh="cup_hull_9" material="invis"/>
+                                                        <geom type="mesh"  mesh="cup_hull_10" material="invis"/>
+                                                        <geom type="mesh"  mesh="cup_hull_11" material="invis"/>
+                                                        <geom type="mesh"  mesh="cup_hull_12" material="invis"/>
+                                                        <geom type="mesh"  mesh="cup_hull_13" material="invis"/>
+                                                        <geom type="mesh"  mesh="cup_hull_14" material="invis"/>
+                                                        <geom type="mesh"  mesh="cup_hull_14" material="invis"/>
+                                                        <geom type="mesh"  mesh="cup_hull_15" material="invis"/>
+                                                        <geom type="mesh"  mesh="cup_hull_16" material="invis"/>
+                                                        <geom type="mesh"  mesh="cup_hull_17" material="invis"/>
+                                                        <geom type="mesh"  mesh="cup_hull_18" material="invis"/>
+                                                        <geom type="mesh"  mesh="cup_hull_19" material="invis"/>
+                                                    </body>
+
+                                                    <!--<body name="cup" pos="0 0 0" euler="0 0.261799387799 -1.57079632679">-->
+                                                        <!--<geom name="cup_base" pos="0 0 0" size=".05 .001 .05" type="box"/>-->
+                                                        <!--<geom name="cup_side_1" pos="-.05 .1 0" size=".001 .1 .05" type="box"/>-->
+                                                        <!--<geom name="cup_side_2" pos=".05 .1 0" size=".001 .1 .05" type="box"/>-->
+                                                        <!--<geom name="cup_side_3" pos="0 .1 -.05" size=".05 .1 .001" type="box"/>-->
+                                                        <!--<geom name="cup_side_4" pos="0 .1 .05" size=".05 .1 .001" type="box"/>-->
+                                                        <!--<site name="cup" pos="0 0 -.108" size=".005"/>-->
+                                                    <!--</body>-->
+
+                                                    <!--<body name = "wrist_cam_mount_link" pos = "0.004 0 0" euler = "-1.308996939 0 0">-->
+                                                        <!--<inertial pos="0.0 0.0 0.0" mass="1e-4" diaginertia="1e-9 1e-9 1e-9"/>-->
+                                                        <!--<geom pos = "0.00975 -.1375 -0.0375" euler = "0 -1.57079632679 0" type="mesh"  mesh="ur_sensor_vicon_mount_tonge_holes" material="gripper_mat"/>-->
+                                                        <!--<body name = "FT300_link" pos = "0.03 0 0" euler = "0 1.57 0">-->
+                                                            <!--<geom size="0.035 0.02375" type="cylinder" material="gripper_mat"/>  -->
+                                                        <!--</body>-->
+                                                    <!--</body>-->
+                                                </body>
+                                            </body>
+                                        </body>
+                                    </body>                                            
+                                </body>                           
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>                  
+
+    </worldbody>
+
+    <actuator>
+
+        <!--kp parameters need to be tuned-->
+        <position name='ur10_arm_0_shoulder_pan_act' ctrllimited="true" ctrlrange="-3.14159 3.14159" joint='ur10_arm_0_shoulder_pan_joint' kp = "775"/>
+        <position name='ur10_arm_1_shoulder_lift_act' ctrllimited="true" ctrlrange="-3.14159 3.14159" joint='ur10_arm_1_shoulder_lift_joint' kp = "750"/>
+        <position name='ur10_arm_2_elbow_act' ctrllimited="true" ctrlrange="-3.14159 3.14159" joint='ur10_arm_2_elbow_joint' kp = "725"/>
+        <position name='ur10_arm_3_wrist_1_act' ctrllimited="true" ctrlrange="-3.1415 3.1415" joint='ur10_arm_3_wrist_1_joint' kp = "850"/>
+        <position name='ur10_arm_4_wrist_2_act' ctrllimited="true" ctrlrange="-3.1415 3.1415" joint='ur10_arm_4_wrist_2_joint' kp = "850"/>
+        <position name='ur10_arm_5_wrist_3_act' ctrllimited="true" ctrlrange="-6.28318530718 6.28318530718" joint='ur10_arm_5_wrist_3_joint' kp = "850"/>
+
+        <position name='ridgeback_x_act' ctrllimited="true" ctrlrange="-4 4" joint='ridgeback_x' gear="1" kp = "70000"/>
+        <position name='ridgeback_y_act' ctrllimited="true" ctrlrange="-4 4" joint='ridgeback_y' gear="1" kp = "70000"/>
+    </actuator>
+</mujoco>
