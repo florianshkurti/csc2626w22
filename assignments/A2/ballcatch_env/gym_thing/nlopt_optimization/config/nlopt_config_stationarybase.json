@@ -1,0 +1,37 @@
+{
+    "yita": 1.0,
+    "base_joints": 3,
+    "ur10_joints": 6,
+
+    "weight": {
+        "ur10_move": 1,
+        "base_move": 10
+    },
+
+    "base_limits":{
+        "pmin": [-0, -0, 0],
+        "pmax": [0.0, 0.0, 0],
+        "vmin": [0, 0, 0],
+        "vmax": [0, 0, 0],
+        "amin": [1, 1, 1],
+        "amax": [1, 1, 1]
+    },
+
+    "ur10_limits":{
+        "pmin": [-6.2830, -6.2830, -6.2830, -6.2830, -6.2830, -6.2830],
+        "pmax": [6.2830, 6.2830, 6.2830, 6.2830, 6.2830, 6.2830],
+        "vmin": [-1.0, -1.0, -1.0, -1.5, -1.5, -2.7],
+        "vmax": [1.0, 1.0, 1.0, 1.5, 1.5, 2.7],
+        "amin": [-8, -8, -8, -8, -8, -8],
+        "amax": [8, 8, 8, 8, 8, 8]
+    },
+
+    "nlopt": {
+        "stop_equality_res": 0.01,
+        "stop_inequality_res": 0.001,
+        "stop_max_time": 5.00,
+        "time_lower_bound": 0.00,
+        "finite_difference": 0.0001,
+        "bound_type": "Ramp"
+    }
+}
