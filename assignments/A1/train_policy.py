@@ -83,7 +83,7 @@ def get_class_distribution(iterator, args):
     class_dist = np.zeros((args.n_steering_classes,), dtype=np.float32)
     for i_batch, batch in enumerate(iterator):
         y = batch['cmd'].detach().numpy().astype(np.int32)
-        class_dist[y] += 1
+        class_dist += np.bincount(y, minlength=args.n_steering_classes)
         
     return (class_dist / sum(class_dist))
 
