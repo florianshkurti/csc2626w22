@@ -4,7 +4,9 @@ from car_racing import *
 from pid import PID
 import numpy as np
 from math import atan2, cos, sin, sqrt
-
+from gym.envs.box2d.car_dynamics import Car
+# import pyglet 
+# from pyglet import gl
 class FullStateCarRacingEnv(CarRacing):
     metadata = {'render.modes': ['human']}
 
@@ -18,6 +20,7 @@ class FullStateCarRacingEnv(CarRacing):
         self.target_speed = 30.0
         self.max_gas = 0.05
         self.draw_target_nav_frame = False
+        self.clock = None
         
     def point_segment_dist(self, p, a, b):
         n = b - a
@@ -103,7 +106,7 @@ class FullStateCarRacingEnv(CarRacing):
         self.world.Step(1.0/FPS, 6*30, 2*30)
         self.t += 1.0/FPS
         
-        self.state = self.render("state_pixels")
+        self.state = self._render("state_pixels")
         
         step_reward = 0
         done = False
@@ -151,35 +154,48 @@ class FullStateCarRacingEnv(CarRacing):
         
         return self.step(None)[0]
 
-    def render(self, mode='human', do_render_indicators=False):
-        if self.viewer is None:
-            from gym.envs.classic_control import rendering
-            self.viewer = rendering.Viewer(WINDOW_W, WINDOW_H)
-            self.score_label = pyglet.text.Label('0000', font_size=36,
-                x=20, y=WINDOW_H*2.5/40.00, anchor_x='left', anchor_y='center',
-                color=(255,255,255,255))
-            self.transform = rendering.Transform()
+    def render(self):
+        return self._render(self.render_mode)
+
+    def _render(self, mode='human', do_render_indicators=False):
+        if self.screen is None:
+            self.screen = pygame.display.set_mode((WINDOW_W, WINDOW_H))
+            pygame.init()
+            pygame.display.init()            
+        if self.clock is None:
+            self.clock = pygame.time.Clock()                
 
         if "t" not in self.__dict__: return  # reset() not called yet
 
-        #zoom = 0.1*SCALE*max(1-self.t, 0) + ZOOM*SCALE*min(self.t, 1)   # Animate zoom first second
+        assert self.car is not None
         zoom = ZOOM*SCALE
-        zoom_state  = ZOOM*SCALE*STATE_W/WINDOW_W
-        zoom_video  = ZOOM*SCALE*VIDEO_W/WINDOW_W
-        scroll_x = self.car.hull.position[0]
-        scroll_y = self.car.hull.position[1]
+        # zoom_state  = ZOOM*SCALE*STATE_W/WINDOW_W
+        # zoom_video  = ZOOM*SCALE*VIDEO_W/WINDOW_W
         angle = -self.car.hull.angle
-        vel = self.car.hull.linearVelocity
-        if np.linalg.norm(vel) > 0.5:
-            angle = math.atan2(vel[0], vel[1])
-            
-        self.transform.set_scale(zoom, zoom)
-        self.transform.set_translation(
-            WINDOW_W/2 - (scroll_x*zoom*math.cos(angle) - scroll_y*zoom*math.sin(angle)),
-            WINDOW_H/4 - (scroll_x*zoom*math.sin(angle) + scroll_y*zoom*math.cos(angle)) )
-        self.transform.set_rotation(angle)
+        #zoom = 0.1*SCALE*max(1-self.t, 0) + ZOOM*SCALE*min(self.t, 1)   # Animate zoom first second
 
-        self.car.draw(self.viewer, mode!="state_pixels")
+        vel = self.car.hull.linearVelocity
+        scroll_x = -(self.car.hull.position[0]) * zoom
+        scroll_y = -(self.car.hull.position[1]) * zoom
+        trans = pygame.math.Vector2((scroll_x, scroll_y)).rotate_rad(angle)
+        trans = (WINDOW_W / 2.0 + trans[0], WINDOW_H / 4.0 + trans[1])
+        
+        # if np.linalg.norm(vel) > 0.5:
+        #     angle = math.atan2(vel[0], vel[1])
+            
+
+        self.surf = pygame.Surface((WINDOW_W, WINDOW_H))
+        
+        #self.car.draw(self.screen, mode!="state_pixels")
+        self._render_road(zoom, trans, angle)
+        self.car.draw(self.surf, zoom, trans, angle, mode not in ["state_pixels_list", "state_pixels"])   
+
+        self.surf = pygame.transform.flip(self.surf, False, True)
+        
+        self.clock.tick(FPS)
+        self.screen.fill(0)
+        self.screen.blit(self.surf,(0,0))
+        pygame.display.flip()
         
         error_heading, error_dist, dest_min = self.get_cross_track_error(self.car, self.track)
 
@@ -188,57 +204,40 @@ class FullStateCarRacingEnv(CarRacing):
             a = self.track[dest_min][2:4]
             b = self.track[(dest_min + 1) % track_size][2:4]
             c = (b[0] - a[0], b[1] - a[1]) 
-            self.viewer.draw_line(start=a, end=b)
-            self.viewer.draw_line(start=a, end=(a[0] + c[1], a[1] - c[0]))
+            self.screen.draw_line(start=a, end=b)
+            self.screen.draw_line(start=a, end=(a[0] + c[1], a[1] - c[0]))
             
         
         arr = None
-        win = self.viewer.window
-        if mode != 'state_pixels':
-            win.switch_to()
-            win.dispatch_events()
+
             
         if mode=="rgb_array" or mode=="state_pixels":
-            win.clear()
-            t = self.transform
+
             if mode=='rgb_array':
                 VP_W = VIDEO_W
                 VP_H = VIDEO_H
             else:
                 VP_W = STATE_W
                 VP_H = STATE_H
-            gl.glViewport(0, 0, VP_W, VP_H)
-            t.enable()
-            self.render_road()
-            for geom in self.viewer.onetime_geoms:
-                geom.render()
-            t.disable()
-            if do_render_indicators:
-                self.render_indicators(WINDOW_W, WINDOW_H)  
+            # if do_render_indicators:
+            #     self.render_indicators(WINDOW_W, WINDOW_H)  
 
-            image_data = pyglet.image.get_buffer_manager().get_color_buffer().get_image_data()
-            arr = np.fromstring(image_data.data, dtype=np.uint8, sep='')
-            arr = arr.reshape(VP_H, VP_W, 4)
-            arr = arr[::-1, :, 0:3]
+            #image_data = pyglet.image.get_buffer_manager().get_color_buffer().get_image_data()
+            #arr = np.fromstring(image_data.get_data(), dtype=np.uint8, sep='')
+            #arr = arr.reshape(VP_H, VP_W, 4)
+            arr = self._create_image_array(self.surf, (VP_W, VP_H))
+            #arr = arr[::-1, :, 0:3]
 
-        if mode=="rgb_array" and not self.human_render: # agent can call or not call env.render() itself when recording video.
-            win.flip()
+        # if mode=="rgb_array" and not self.human_render: # agent can call or not call env.render() itself when recording video.
+        #     win.flip()
 
         if mode=='human':
             self.human_render = True
-            win.clear()
-            t = self.transform
-            gl.glViewport(0, 0, WINDOW_W, WINDOW_H)
-            t.enable()
-            self.render_road()
-            for geom in self.viewer.onetime_geoms:
-                geom.render()
-            t.disable()
-
+            self._render_road()
             if do_render_indicators:
                 self.render_indicators(WINDOW_W, WINDOW_H)
                 
-            win.flip()
+            # win.flip()
 
-        self.viewer.onetime_geoms = []
+        # self.screen.onetime_geoms = []
         return arr
