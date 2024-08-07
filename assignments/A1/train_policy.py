@@ -52,7 +52,7 @@ def accuracy(y_pred, y_true):
 
 
 def test_discrete(model, iterator, opt, args):
-    model.train()
+    model.eval()
     
     acc_hist = []
     
